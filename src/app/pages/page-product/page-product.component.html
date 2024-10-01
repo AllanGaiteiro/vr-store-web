@@ -1,0 +1,12 @@
+<div class="product-container" *ngIf="!runProduct">
+  <app-navbar route="cadastro" [id]="prodId || null"></app-navbar>
+
+  <div class="grid-container">
+    <div class="form-container">
+      <app-product-form></app-product-form>
+    </div>
+
+    <img class="image-container" src="https://coffective.com/wp-content/uploads/2018/06/default-featured-image.png.jpg" alt="Produto">
+
+  </div>
+</div>
