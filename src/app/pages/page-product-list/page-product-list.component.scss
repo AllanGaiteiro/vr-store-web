@@ -1,0 +1,80 @@
+/* Contêiner Principal */
+.product-list-container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 20px;
+  border-radius: 8px;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+/* Tabela Estilizada */
+.product-table {
+  width: 100%;
+  border-spacing: 0;
+  border-collapse: collapse;
+}
+
+.mat-header-cell {
+  background-color: #fe9e23;
+  color: white;
+  font-weight: bold;
+  text-align: left;
+  padding: 12px;
+  font-size: 16px;
+  border-bottom: 2px solid white;
+}
+
+.mat-cell {
+  padding: 15px;
+  border-bottom: 1px solid #f0f0f0;
+  font-size: 14px;
+}
+
+.mat-row {
+  transition: background-color 0.3s;
+}
+
+.mat-row:hover {
+  background-color: #fff4e0;
+}
+
+.mat-elevation-z8 {
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.05);
+}
+
+/* Botões */
+button.mat-raised-button {
+  background-color: #fe9e23;
+  color: white;
+  padding: 10px 20px;
+  font-size: 16px;
+  border-radius: 4px;
+  transition: background-color 0.3s, transform 0.2s;
+}
+
+button.mat-raised-button:hover {
+  background-color: #fd8c00;
+  transform: translateY(-2px);
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15);
+}
+
+/* Responsividade para Dispositivos Móveis */
+@media (max-width: 768px) {
+  .mat-header-cell,
+  .mat-cell {
+    font-size: 14px;
+    padding: 10px;
+  }
+
+  button.mat-raised-button {
+    width: 100%;
+    padding: 12px;
+    font-size: 16px;
+  }
+}
+.product-table .mat-column-actions {
+  width: 1%;
+  white-space: nowrap;
+}
