@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { Product, ProductFilter } from '../../models/Product';
+import { Product } from '../../models/Product';
+import { ProductFilter } from "../../models/ProductFilter";
 import { ProductService } from '../../services/Product.service';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
