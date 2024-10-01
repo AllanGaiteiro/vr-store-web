@@ -44,12 +44,9 @@ export class PageProductListComponent implements OnInit {
   }
 
   ngOnDestroy(): void {
-    if (this.filterFormSubscription) {
-      this.filterFormSubscription.unsubscribe();
-    }
-    if (this.productSubscription) {
-      this.productSubscription.unsubscribe();
-    }
+    this.filterFormSubscription?.unsubscribe();
+    this.productSubscription?.unsubscribe();
+
   }
 
   loadProducts(filter?: any): void {
