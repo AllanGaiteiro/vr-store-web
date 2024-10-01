@@ -9,13 +9,13 @@
 
 .form-group {
   display: flex;
-  flex-direction: column; /* Para colocar o label acima do input */
+  flex-direction: column;
 }
 
 .form-group label {
-  margin-bottom: 5px; /* Espaçamento entre o label e o input */
-  font-size: 14px; /* Tamanho da fonte do label */
-  color: #333; /* Cor do texto do label */
+  margin-bottom: 5px;
+  font-size: 14px;
+  color: #333; 
 }
 
 .filters input {
@@ -61,6 +61,6 @@ button{
   }
 }
 .product-table .mat-column-actions {
-  width: 1%; /* Mantém a coluna o menor possível */
-  white-space: nowrap; /* Impede quebra de linha */
+  width: 1%;
+  white-space: nowrap;
 }
