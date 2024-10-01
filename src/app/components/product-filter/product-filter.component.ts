@@ -1,9 +1,6 @@
 import { CommonModule } from '@angular/common';
-import { Component, EventEmitter, OnDestroy, Output } from '@angular/core';
-import { ReactiveFormsModule, FormGroup, FormBuilder } from '@angular/forms';
-import { Product } from '../../models/Product';
-import { ProductFilter } from '../../models/ProductFilter';
-import { Subscription } from 'rxjs';
+import { Component } from '@angular/core';
+import { ReactiveFormsModule, FormGroup } from '@angular/forms';
 import { ProductFilterService } from '../../services/product-filter.service';
 
 @Component({
