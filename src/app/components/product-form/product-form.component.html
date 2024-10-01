@@ -1,0 +1,16 @@
+<form *ngIf="productForm" [formGroup]="productForm" class="product">
+  <div class="form-group">
+    <label for="id">Código</label>
+    <input formControlName="id" id="id" placeholder="Código" [readonly]="true" />
+  </div>
+  
+  <div class="form-group">
+    <label for="description">Descrição</label>
+    <input formControlName="description" id="description" placeholder="Descrição" />
+  </div>
+
+  <div class="form-group">
+    <label for="cost">Custo</label>
+    <input formControlName="cost" id="cost" type="number" placeholder="Custo" />
+  </div>
+</form>
