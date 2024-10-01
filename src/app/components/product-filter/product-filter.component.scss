@@ -1,0 +1,66 @@
+
+/* Filtros Responsivos */
+.filters {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin-bottom: 20px;
+}
+
+.form-group {
+  display: flex;
+  flex-direction: column; /* Para colocar o label acima do input */
+}
+
+.form-group label {
+  margin-bottom: 5px; /* Espaçamento entre o label e o input */
+  font-size: 14px; /* Tamanho da fonte do label */
+  color: #333; /* Cor do texto do label */
+}
+
+.filters input {
+  flex: 1;
+  padding: 10px;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  font-size: 16px;
+  transition: border-color 0.3s;
+}
+
+.filters input:focus {
+  border-color: #fe9e23;
+  outline: none;
+}
+
+button{
+  height: 45px;
+  margin: auto ;
+  margin-top: 25px;
+}
+
+/* Responsividade para Dispositivos Móveis */
+@media (max-width: 768px) {
+  .filters {
+    flex-direction: column;
+  }
+
+  .filters input {
+    margin-right: 0;
+    margin-bottom: 10px;
+  }
+
+  .mat-header-cell, .mat-cell {
+    font-size: 14px;
+    padding: 10px;
+  }
+
+  button.mat-raised-button {
+    width: 100%;
+    padding: 12px;
+    font-size: 16px;
+  }
+}
+.product-table .mat-column-actions {
+  width: 1%; /* Mantém a coluna o menor possível */
+  white-space: nowrap; /* Impede quebra de linha */
+}

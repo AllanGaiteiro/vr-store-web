@@ -1,7 +1,7 @@
 <div class="product-list-container">
-  
+
   <app-navbar route="produto"></app-navbar>
-  <app-product-filter (filterChange)="applyFilters($event)"></app-product-filter>
+  <app-product-filter></app-product-filter>
 
   <table mat-table [dataSource]="products" class="mat-elevation-z8 product-table">
     <!-- Código -->

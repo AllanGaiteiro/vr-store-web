@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Product } from '../../models/Product';
-import { ProductFilter } from "../../models/ProductFilter";
+import { ProductFilter } from '../../models/ProductFilter';
 import { ProductService } from '../../services/Product.service';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
@@ -9,6 +9,8 @@ import { EditButtonComponent } from '../../components/button/edit-button/edit-bu
 import { DeleteButtonComponent } from '../../components/button/delete-button/delete-button.component';
 import { NavbarComponent } from '../../components/navbar/navbar.component';
 import { ProductFilterComponent } from '../../components/product-filter/product-filter.component';
+import { ProductFilterService } from '../../services/product-filter.service';
+import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-page-product-list',
@@ -21,26 +23,38 @@ import { ProductFilterComponent } from '../../components/product-filter/product-
     ProductFilterComponent,
     EditButtonComponent,
     DeleteButtonComponent,
-    ],
+  ],
   templateUrl: './page-product-list.component.html',
   styleUrls: ['./page-product-list.component.scss'],
 })
 export class PageProductListComponent implements OnInit {
   products: Product[] = [];
+  filterFormSubscription?: Subscription;
+  productSubscription?: Subscription;
 
-  constructor(private productService: ProductService) {}
+  constructor(
+    private productService: ProductService,
+    private productFilterService: ProductFilterService
+  ) {
+    this.filterFormSubscription = this.productFilterService.getFormGroup().valueChanges.subscribe(this.loadProducts);
+  }
 
   ngOnInit(): void {
     this.loadProducts();
   }
 
-  loadProducts(filter?: any): void {
-    this.productService.getProducts(filter).subscribe((data) => {
-      this.products = data;
-    });
+  ngOnDestroy(): void {
+    if (this.filterFormSubscription) {
+      this.filterFormSubscription.unsubscribe();
+    }
+    if (this.productSubscription) {
+      this.productSubscription.unsubscribe();
+    }
   }
 
-  applyFilters(filterValues: Partial<ProductFilter>): void {
-    this.loadProducts(filterValues);
+  loadProducts(filter?: any): void {
+    this.productSubscription = this.productService.getProducts(filter).subscribe((data) => {
+      this.products = data;
+    });
   }
 }

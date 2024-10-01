@@ -1,0 +1,19 @@
+<form *ngIf="filterForm" [formGroup]="filterForm" class="filters">
+  <div class="form-group">
+    <label for="id">Código</label>
+    <input formControlName="id" id="id" type="number" placeholder="Código" />
+  </div>
+  <div class="form-group">
+    <label for="description">Descrição</label>
+    <input formControlName="description" id="description" placeholder="Descrição" />
+  </div>
+  <div class="form-group">
+    <label for="cost">Custo</label>
+    <input formControlName="cost" id="cost" type="number" placeholder="Custo" />
+  </div>
+  <div class="form-group">
+    <label for="price">Custo</label>
+    <input formControlName="price" id="price" type="number" placeholder="Preço de Venda" />
+  </div>
+  <button (click)="resetFilters()">Limpar Filtros</button>
+</form>
