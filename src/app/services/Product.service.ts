@@ -7,8 +7,6 @@ import { ProductFilter } from '../models/ProductFilter';
   providedIn: 'root',
 })
 export class ProductService {
-  product?: Product;
-
   private products: Product[] = [
     { id: 1, description: 'Produto A', cost: 10.0, image: null },
     { id: 2, description: 'Produto B', cost: 15.0, image: null },
@@ -51,19 +49,43 @@ export class ProductService {
     return of(filteredProducts);
   }
 
-  getProduct(id: number): Observable<Product | undefined> {
+  getProduct(id: number): Observable<Product> {
     let product = this.products.find((product) => product.id === id);
-
-    console.log(product);
-    return of(product);
+    if (product !== undefined) {
+      return of(product);
+    }
+    throw new Error('Error Ocurrend In get Product');
   }
 
-  createProduct(newProduct: Product): Observable<Product> {
+  async createProduct(newProduct: Product): Promise<Product> {
     newProduct.id = this.products.length
       ? Math.max(...this.products.map((p) => p.id)) + 1
       : 1;
+
     this.products.push(newProduct);
-    return of(newProduct);
+
+    const res = await of(newProduct).toPromise();
+    if (res === undefined) {
+      throw new Error('Error Ocurrend In create Product');
+    } else {
+      return res;
+    }
+  }
+  async updateProduct(updateProduct: Product): Promise<Product> {
+    const product = this.products.find((p) => p.id === updateProduct.id);
+
+    if (product) {
+      product.cost = updateProduct.cost;
+      product.description = updateProduct.description;
+      product.image = updateProduct.image;
+    }
+
+    const res = await of(product).toPromise();
+    if (res === undefined) {
+      throw new Error('Error Ocurrend In update Product');
+    } else {
+      return res;
+    }
   }
 
   deleteProduct(productId: number): Promise<void> {
