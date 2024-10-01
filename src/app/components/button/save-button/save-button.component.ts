@@ -1,5 +1,5 @@
 import { CommonModule } from '@angular/common';
-import { ChangeDetectionStrategy, Component } from '@angular/core';
+import { Component } from '@angular/core';
 import { ProductService } from '../../../services/Product.service';
 import { Router } from '@angular/router';
 import { ProductFormService } from '../../../services/product-form.service';
@@ -12,7 +12,6 @@ import { ProductFormService } from '../../../services/product-form.service';
     Salvar
   </button>`,
   styleUrl: './save-button.component.scss',
-  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class SaveButtonComponent {
   constructor(
@@ -23,18 +22,18 @@ export class SaveButtonComponent {
 
   saveProduct(): void {
     const productData = this.productFormService.getProduct();
+    console.log(productData);
     if (!productData) return;
-    if(!productData?.id){
+    if (!productData?.id) {
       this.productService.createProduct(productData).then((res) => {
         if (res) {
           this.router.navigate(['/produto/cadastro', res.id]);
         }
       });
-    }else {
+    } else {
       this.productService.updateProduct(productData).then((res) => {
-console.log('update product')
+        console.log('update product');
       });
     }
-
   }
 }

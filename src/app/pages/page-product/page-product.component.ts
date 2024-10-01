@@ -1,6 +1,5 @@
 import { CommonModule } from '@angular/common';
 import {
-  ChangeDetectionStrategy,
   Component,
   OnDestroy,
   OnInit,
@@ -14,6 +13,7 @@ import {
 import { ProductFormComponent } from '../../components/product-form/product-form.component';
 import { ProductService } from '../../services/Product.service';
 import { ProductFormService } from '../../services/product-form.service';
+import { HttpClientModule } from '@angular/common/http';
 
 @Component({
   selector: 'app-page-product',
@@ -23,10 +23,10 @@ import { ProductFormService } from '../../services/product-form.service';
     ReactiveFormsModule,
     NavbarComponent,
     ProductFormComponent,
+    HttpClientModule,
   ],
   templateUrl: './page-product.component.html',
   styleUrl: './page-product.component.scss',
-  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class PageProductComponent implements OnInit, OnDestroy {
   prodId?: number;

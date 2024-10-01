@@ -1,7 +1,6 @@
 import { CommonModule } from '@angular/common';
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { ReactiveFormsModule, FormGroup } from '@angular/forms';
-import { ProductService } from '../../services/Product.service';
 import { Subscription } from 'rxjs';
 import { ProductFormService } from '../../services/product-form.service';
 import { Product } from '../../models/Product';
@@ -24,7 +23,7 @@ export class ProductFormComponent implements OnInit, OnDestroy {
     this.productForm = this.productFormService.getFormGroup();
     this.productSubscription = this.productFormService
       .getFormGroup()
-      .valueChanges.subscribe(this.productFormService.setProduct);
+      .valueChanges.subscribe((res) => this.productFormService.setProduct(res));
   }
 
   ngOnDestroy(): void {

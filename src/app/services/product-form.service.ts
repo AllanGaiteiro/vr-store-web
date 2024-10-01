@@ -15,7 +15,7 @@ export class ProductFormService {
 
   private createProductForm(): void {
     this.formGroup = this.fb.group({
-      id: ['CODIGO AUTOMATICO'],
+      id: [null],
       description: [null],
       cost: [null],
       image: [null],
@@ -40,7 +40,7 @@ export class ProductFormService {
   updateFormValues(): void {
     if (this.product) {
       this.formGroup.patchValue({
-        id: this.product.id || 'CODIGO AUTOMATICO',
+        id: this.product.id || null,
         description: this.product.description,
         cost: this.product.cost,
         image: this.product.image,

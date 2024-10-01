@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Product } from '../../models/Product';
+import { ProductFilter } from '../../models/ProductFilter';
 import { ProductService } from '../../services/Product.service';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
@@ -35,7 +36,11 @@ export class PageProductListComponent implements OnInit {
     private productService: ProductService,
     private productFilterService: ProductFilterService
   ) {
-    this.filterFormSubscription = this.productFilterService.getFormGroup().valueChanges.subscribe(this.loadProducts);
+    this.filterFormSubscription = this.productFilterService
+      .getFormGroup()
+      .valueChanges.subscribe((res) => {
+        this.loadProducts(res);
+      });
   }
 
   ngOnInit(): void {
@@ -45,12 +50,13 @@ export class PageProductListComponent implements OnInit {
   ngOnDestroy(): void {
     this.filterFormSubscription?.unsubscribe();
     this.productSubscription?.unsubscribe();
-
   }
 
-  loadProducts(filter?: any): void {
-    this.productSubscription = this.productService.getProducts(filter).subscribe((data) => {
-      this.products = data;
-    });
+  loadProducts(filter?: ProductFilter): void {
+    this.productSubscription = this.productService
+      .getProducts(filter)
+      .subscribe((data) => {
+        this.products = data;
+      });
   }
 }

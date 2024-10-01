@@ -1,17 +1,21 @@
 import { CommonModule } from '@angular/common';
-import { ChangeDetectionStrategy, Component, Input } from '@angular/core';
-import { Router } from '@angular/router';
+import { Component, Input } from '@angular/core';
 import { ProductService } from '../../../services/Product.service';
+import { HttpClientModule } from '@angular/common/http';
 
 @Component({
   selector: 'app-delete-button',
   standalone: true,
   imports: [CommonModule],
-  template: `<button *ngIf="id" class="delete-button" (click)="deleteProduct(id)">
+  template: `<button
+    *ngIf="id"
+    class="delete-button"
+    (click)="deleteProduct(id)"
+  >
     Deletar
   </button>`,
   styleUrl: './delete-button.component.scss',
-  changeDetection: ChangeDetectionStrategy.OnPush,
+
 })
 export class DeleteButtonComponent {
   @Input() id?: number;
