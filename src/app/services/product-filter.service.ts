@@ -17,6 +17,7 @@ export class ProductFilterService {
       description: [null],
       cost: [null],
       price: [null],
+      costOperator: ['<='],
     });
   }
 

@@ -33,13 +33,12 @@ export class ProductService {
     }
 
     if (filter.cost) {
-      params =  params.set('minCost', filter.cost);
+      if (filter.costOperator === '<=') {
+        params = params.set('maxCost', filter.cost.toString()); // Use o custo como máximo se o operador for '<='
+      } else if (filter.costOperator === '>=') {
+        params = params.set('minCost', filter.cost.toString()); // Use o custo como mínimo se o operador for '>='
+      }
     }
-    /*
-    if (filter.maxCost) {
-      params.maxCost = filter.maxCost; // Usando o custo máximo do filtro
-    }
-      */
     return params;
   }
 
