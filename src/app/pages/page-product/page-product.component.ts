@@ -13,7 +13,7 @@ import {
 import { ProductFormComponent } from '../../components/product-form/product-form.component';
 import { ProductService } from '../../services/Product.service';
 import { ProductFormService } from '../../services/product-form.service';
-import { HttpClientModule } from '@angular/common/http';
+import { PriceListComponent } from '../../components/price-list/price-list.component';
 
 @Component({
   selector: 'app-page-product',
@@ -23,7 +23,7 @@ import { HttpClientModule } from '@angular/common/http';
     ReactiveFormsModule,
     NavbarComponent,
     ProductFormComponent,
-    HttpClientModule,
+    PriceListComponent
   ],
   templateUrl: './page-product.component.html',
   styleUrl: './page-product.component.scss',
