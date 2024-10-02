@@ -1,0 +1,22 @@
+<div>
+    <table mat-table [dataSource]="dataSource" matSort>
+      <ng-container matColumnDef="addButton">
+        <th mat-header-cell *matHeaderCellDef><app-add-button></app-add-button></th>
+        <td mat-cell *matCellDef="let price"></td>
+      </ng-container>
+  
+      <ng-container matColumnDef="store">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header>Loja</th>
+        <td mat-cell *matCellDef="let price">{{ price.store.description }}</td>
+      </ng-container>
+  
+      <ng-container matColumnDef="priceValue">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header>Preço de Venda</th>
+        <td mat-cell *matCellDef="let price">{{ price.priceValue | currency: "BRL" }}</td>
+      </ng-container>
+  
+      <tr mat-header-row *matHeaderRowDef="['addButton', 'store', 'priceValue']"></tr>
+      <tr mat-row *matRowDef="let row; columns: ['addButton', 'store', 'priceValue']"></tr>
+    </table>
+  </div>
+  
