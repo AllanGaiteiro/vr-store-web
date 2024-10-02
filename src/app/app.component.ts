@@ -3,6 +3,7 @@ import { RouterOutlet } from '@angular/router';
 import { NavbarComponent } from "./components/navbar/navbar.component";
 import { HttpClientModule } from '@angular/common/http';
 import { ProductService } from './services/Product.service';
+import { PriceService } from './services/price.service';
 
 @Component({
   selector: 'app-root',
@@ -10,7 +11,7 @@ import { ProductService } from './services/Product.service';
   imports: [RouterOutlet, NavbarComponent,HttpClientModule],
   templateUrl: './app.component.html',
   styleUrl: './app.component.scss',
-  providers:[ProductService]
+  providers:[ProductService,PriceService]
 })
 export class AppComponent {
   title = 'vr-store-web';

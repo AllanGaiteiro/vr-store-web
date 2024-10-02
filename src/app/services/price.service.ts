@@ -5,6 +5,8 @@ import { Observable } from 'rxjs';
 import { Price } from '../models/Price';
 import { environment } from '../../environments/environment';
 import { FilterPrices } from '../models/FilterPrices';
+import { Product } from '../models/Product';
+import { ParamsService } from './params.service';
 
 @Injectable({
   providedIn: 'root',
@@ -12,27 +14,10 @@ import { FilterPrices } from '../models/FilterPrices';
 export class PriceService {
   private apiUrl = environment.apiUrl;
 
-  constructor(private http: HttpClient) {}
+  constructor(private http: HttpClient, private paramsService: ParamsService) {}
 
-  getPrices(filters: FilterPrices): Observable<Price[]> {
-    let params = new HttpParams();
-
-    if (filters) {
-      if (filters.productId) {
-        params = params.set('productId', filters.productId.toString());
-      }
-      if (filters.storeId) {
-        params = params.set('storeId', filters.storeId.toString());
-      }
-      if (filters.minPriceValue) {
-        params = params.set('minPriceValue', filters.minPriceValue.toString());
-      }
-      if (filters.maxPriceValue) {
-        params = params.set('maxPriceValue', filters.maxPriceValue.toString());
-      }
-    }
-
-    console.log(filters)
+  getPrices(filters: FilterPrices, singleItemPerProduct = false): Observable<Price[]> {
+    let params = this.paramsService.buildPriceParams(filters, singleItemPerProduct);
     return this.http.get<Price[]>(`${this.apiUrl}/prices`, { params });
   }
 }

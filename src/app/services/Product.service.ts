@@ -1,45 +1,42 @@
 import { Injectable } from '@angular/core';
-import { firstValueFrom, Observable, of, Subject } from 'rxjs';
+import { firstValueFrom, map, Observable, of, Subject } from 'rxjs';
 import { Product } from '../models/Product';
 import { environment } from '../../environments/environment';
 import { HttpClient, HttpParams } from '@angular/common/http';
 import { ProductFilter } from '../models/ProductFilter';
+import { PriceService } from './price.service';
+import { FilterPrices } from '../models/FilterPrices';
+import { ParamsService } from './params.service';
 
 @Injectable({
   providedIn: 'root',
 })
 export class ProductService {
   private apiUrl = environment.apiUrl;
-  private productsSubject = new Subject<Product[]>(); // Subject para emitir atualizações
+  private productsSubject = new Subject<Product[]>();
 
-  constructor(private http: HttpClient) {}
+  constructor(
+    private http: HttpClient,
+    private priceService: PriceService,
+    private paramsService: ParamsService
+  ) {}
 
   getProducts(filter?: ProductFilter): Observable<Product[]> {
-    // Constrói a URL com parâmetros de consulta se o filtro for fornecido
-    const params = filter ? { params: this.buildParams(filter) } : {};
-    return this.http.get<Product[]>(`${this.apiUrl}/products`, params);
-  }
+    const params = filter
+      ? { params: this.paramsService.buildProductParams(filter) }
+      : {};
 
-  private buildParams(filter: ProductFilter): HttpParams {
-    let params = new HttpParams();
-
-    if (filter.id) {
-      params = params.set('productId', filter.id.toString());
+    if (filter?.price) {
+      const filterPrice: FilterPrices = {
+        productId: filter.id,
+        minPriceValue: filter.price,
+      };
+      return this.priceService
+        .getPrices(filterPrice, true)
+        .pipe(map((res) => res.map((price) => price.product)));
+    } else {
+      return this.http.get<Product[]>(`${this.apiUrl}/products`, params);
     }
-
-    if (filter.description) {
-      console.log(filter.description)
-      params =  params.set('description', filter.description.toString());
-    }
-
-    if (filter.cost) {
-      if (filter.costOperator === '<=') {
-        params = params.set('maxCost', filter.cost.toString()); // Use o custo como máximo se o operador for '<='
-      } else if (filter.costOperator === '>=') {
-        params = params.set('minCost', filter.cost.toString()); // Use o custo como mínimo se o operador for '>='
-      }
-    }
-    return params;
   }
 
   getProduct(id: number): Observable<Product> {
