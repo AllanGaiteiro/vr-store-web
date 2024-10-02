@@ -7,13 +7,13 @@ import { Product } from '../models/Product';
 })
 export class ProductFormService {
   private formGroup!: FormGroup;
-  product!: Product;
+  product!: Product | null;
 
   constructor(private fb: FormBuilder) {
     this.createProductForm();
   }
 
-  private createProductForm(): void {
+  createProductForm(): void {
     this.formGroup = this.fb.group({
       id: [null],
       description: [null],
@@ -26,7 +26,7 @@ export class ProductFormService {
     return this.formGroup;
   }
 
-  getProduct(): Product {
+  getProduct(): Product | null {
     return this.product;
   }
 
@@ -37,13 +37,20 @@ export class ProductFormService {
     }
   }
 
+  resetProduct() {
+    this.product = null;
+    this.createProductForm();
+  }
+
   updateFormValues(): void {
     if (this.product) {
       this.formGroup.patchValue({
         id: this.product.id || null,
-        description: this.product.description,
-        cost: Number(Number(this.product.cost).toFixed(2)),
-        image: this.product.image,
+        description: this.product.description || null,
+        cost: this.product.cost
+          ? Number(Number(this.product.cost).toFixed(2))
+          : null,
+        image: this.product.image ? this.product.image : null,
       });
     }
   }

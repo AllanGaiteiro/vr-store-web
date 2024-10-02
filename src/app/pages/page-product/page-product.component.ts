@@ -1,15 +1,9 @@
 import { CommonModule } from '@angular/common';
-import {
-  Component,
-  OnDestroy,
-  OnInit,
-} from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { NavbarComponent } from '../../components/navbar/navbar.component';
 import { ActivatedRoute } from '@angular/router';
 import { Subscription } from 'rxjs';
-import {
-  ReactiveFormsModule,
-} from '@angular/forms';
+import { ReactiveFormsModule } from '@angular/forms';
 import { ProductFormComponent } from '../../components/product-form/product-form.component';
 import { ProductService } from '../../services/Product.service';
 import { ProductFormService } from '../../services/product-form.service';
@@ -23,13 +17,13 @@ import { PriceListComponent } from '../../components/price-list/price-list.compo
     ReactiveFormsModule,
     NavbarComponent,
     ProductFormComponent,
-    PriceListComponent
+    PriceListComponent,
   ],
   templateUrl: './page-product.component.html',
   styleUrl: './page-product.component.scss',
 })
 export class PageProductComponent implements OnInit, OnDestroy {
-  prodId?: number;
+  prodId: number | null = null;
   routeSubscription?: Subscription;
   producSubscription?: Subscription;
   runProduct = true;
@@ -48,13 +42,15 @@ export class PageProductComponent implements OnInit, OnDestroy {
         if (params['id'] === null || params['id'] === undefined) {
           this.runProduct = false;
           console.log('Page Product Cadastro');
+          this.prodId = null;
+          this.productFormService.resetProduct();
         } else {
           console.log('Page Product Edite');
           this.prodId = Number(params['id']);
           if (this.prodId) this.observeProduct(this.prodId);
         }
       },
-      error: () => this.runProduct = false,
+      error: () => (this.runProduct = false),
     });
   }
 
@@ -70,6 +66,5 @@ export class PageProductComponent implements OnInit, OnDestroy {
   ngOnDestroy(): void {
     this.routeSubscription?.unsubscribe();
     this.producSubscription?.unsubscribe();
-
   }
 }

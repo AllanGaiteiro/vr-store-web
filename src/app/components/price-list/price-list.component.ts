@@ -22,9 +22,9 @@ import { MatSort, MatSortModule } from '@angular/material/sort';
   providers: [PriceService],
 })
 export class PriceListComponent implements OnInit {
-  @Input() prodId?: number;
+  @Input() prodId: number | null = null;
   prices: Price[] = [];
-  dataSource: MatTableDataSource<Price>; 
+  dataSource: MatTableDataSource<Price>;
 
   @ViewChild(MatSort) sort?: MatSort;
 
@@ -37,22 +37,23 @@ export class PriceListComponent implements OnInit {
   }
 
   loadPrices() {
+    if (!this.prodId) return;
     this.priceService
-    .getPrices({ productId: this.prodId })
-    .subscribe((data) => {
-      this.prices = data;
-      this.dataSource.data = this.prices;
-      this.dataSource.sort = this.sort || this.dataSource.sort; 
-      this.dataSource.sortingDataAccessor = (item, property) => {
-        switch (property) {
-          case 'store':
-            return item.store.description; 
-          case 'priceValue':
-            return item.priceValue; 
-          default:
-            return item.priceValue;
-        }
-      };
-    });
+      .getPrices({ productId: this.prodId })
+      .subscribe((data) => {
+        this.prices = data;
+        this.dataSource.data = this.prices;
+        this.dataSource.sort = this.sort || this.dataSource.sort;
+        this.dataSource.sortingDataAccessor = (item, property) => {
+          switch (property) {
+            case 'store':
+              return item.store.description;
+            case 'priceValue':
+              return item.priceValue;
+            default:
+              return item.priceValue;
+          }
+        };
+      });
   }
 }
