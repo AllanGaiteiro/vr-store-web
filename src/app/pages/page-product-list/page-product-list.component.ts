@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, OnDestroy } from '@angular/core';
 import { Product } from '../../models/Product';
 import { ProductFilter } from '../../models/ProductFilter';
 import { ProductService } from '../../services/Product.service';
@@ -27,7 +27,7 @@ import { Subscription } from 'rxjs';
   templateUrl: './page-product-list.component.html',
   styleUrls: ['./page-product-list.component.scss'],
 })
-export class PageProductListComponent implements OnInit {
+export class PageProductListComponent implements OnInit, OnDestroy {
   products: Product[] = [];
   filterFormSubscription?: Subscription;
   productSubscription?: Subscription;
@@ -45,6 +45,9 @@ export class PageProductListComponent implements OnInit {
 
   ngOnInit(): void {
     this.loadProducts();
+    this.productSubscription = this.productService.getProductsUpdates().subscribe((data) => {
+      this.products = data; // Atualiza a lista de produtos quando houver mudanças
+    });
   }
 
   ngOnDestroy(): void {
@@ -53,10 +56,8 @@ export class PageProductListComponent implements OnInit {
   }
 
   loadProducts(filter?: ProductFilter): void {
-    this.productSubscription = this.productService
-      .getProducts(filter)
-      .subscribe((data) => {
-        this.products = data;
-      });
+    this.productService.getProducts(filter).subscribe((data) => {
+      this.products = data;
+    });
   }
 }

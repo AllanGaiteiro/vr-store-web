@@ -22,7 +22,6 @@ export class SaveButtonComponent {
 
   saveProduct(): void {
     const productData = this.productFormService.getProduct();
-    console.log(productData);
     if (!productData) return;
     if (!productData?.id) {
       this.productService.createProduct(productData).then((res) => {

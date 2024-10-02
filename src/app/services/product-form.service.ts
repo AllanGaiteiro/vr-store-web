@@ -42,7 +42,7 @@ export class ProductFormService {
       this.formGroup.patchValue({
         id: this.product.id || null,
         description: this.product.description,
-        cost: this.product.cost,
+        cost: Number(Number(this.product.cost).toFixed(2)),
         image: this.product.image,
       });
     }
@@ -56,5 +56,9 @@ export class ProductFormService {
       currentProduct?.cost === values?.cost
       // && currentProduct?.image === values?.image
     );
+  }
+
+  private isNumber(value: any): value is number {
+    return typeof value === 'number' && !isNaN(value);
   }
 }
