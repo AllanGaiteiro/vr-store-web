@@ -5,7 +5,7 @@ import { ActivatedRoute } from '@angular/router';
 import { Subscription } from 'rxjs';
 import { ReactiveFormsModule } from '@angular/forms';
 import { ProductFormComponent } from '../../components/product-form/product-form.component';
-import { ProductService } from '../../services/Product.service';
+import { ProductService } from '../../services/product.service';
 import { ProductFormService } from '../../services/product-form.service';
 import { PriceListComponent } from '../../components/price-list/price-list.component';
 
