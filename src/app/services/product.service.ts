@@ -29,7 +29,11 @@ export class ProductService {
     if (filter?.price) {
       const filterPrice: FilterPrices = {
         productId: filter.id,
-        minPriceValue: filter.price,
+        price: filter.price,
+        cost: filter.cost,
+        description: filter.description,
+        costOperator: filter.costOperator,
+        priceOperator: filter.priceOperator,
       };
       return this.priceService
         .getPrices(filterPrice, true)

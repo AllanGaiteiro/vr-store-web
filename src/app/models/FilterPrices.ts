@@ -1,7 +1,9 @@
-
 export interface FilterPrices {
   productId?: number;
   storeId?: number;
-  minPriceValue?: number;
-  maxPriceValue?: number;
+  price?: number;
+  cost?: number;
+  description?: string;
+  priceOperator?: '<=' | '>=';
+  costOperator?: '<=' | '>=';
 }

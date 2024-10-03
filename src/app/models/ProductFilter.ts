@@ -1,6 +1,7 @@
-import { Product } from "./Product";
+import { Product } from './Product';
 
 export interface ProductFilter extends Product {
-    price: number;
-    costOperator: '<='| '>=';
+  price: number;
+  costOperator: '<=' | '>=';
+  priceOperator: '<=' | '>=';
 }

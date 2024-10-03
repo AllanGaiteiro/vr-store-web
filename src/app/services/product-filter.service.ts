@@ -18,6 +18,7 @@ export class ProductFilterService {
       cost: [null],
       price: [null],
       costOperator: ['<='],
+      priceOperator: ['<='],
     });
   }
 

@@ -4,11 +4,10 @@ import { ProductFilter } from '../models/ProductFilter';
 import { FilterPrices } from '../models/FilterPrices';
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class ParamsService {
-
-  constructor() { }
+  constructor() {}
 
   buildProductParams(filter: ProductFilter): HttpParams {
     let params = new HttpParams();
@@ -40,17 +39,36 @@ export class ParamsService {
       if (filters.productId) {
         params = params.set('productId', filters.productId.toString());
       }
+
       if (filters.storeId) {
         params = params.set('storeId', filters.storeId.toString());
       }
-      if (filters.minPriceValue) {
-        params = params.set('minPriceValue', filters.minPriceValue.toString());
+
+      if (filters.description) {
+        params = params.set('description', filters.description.toString());
       }
-      if (filters.maxPriceValue) {
-        params = params.set('maxPriceValue', filters.maxPriceValue.toString());
+
+      if (filters.price) {
+        if (filters.priceOperator === '<=') {
+          params = params.set('maxPriceValue', filters.price.toString());
+        } else if (filters.priceOperator === '>=') {
+          params = params.set('minPriceValue', filters.price.toString());
+        }
       }
+
+      if (filters.cost) {
+        if (filters.costOperator === '<=') {
+          params = params.set('maxCost', filters.cost.toString());
+        } else if (filters.costOperator === '>=') {
+          params = params.set('minCost', filters.cost.toString());
+        }
+      }
+
       if (singleItemPerProduct) {
-        params = params.set('singleItemPerProduct', singleItemPerProduct.toString());
+        params = params.set(
+          'singleItemPerProduct',
+          singleItemPerProduct.toString()
+        );
       }
     }
     return params;
