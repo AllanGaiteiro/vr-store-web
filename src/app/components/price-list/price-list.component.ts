@@ -60,4 +60,8 @@ export class PriceListComponent implements OnInit {
         };
       });
   }
+
+  onPriceAdded() {
+    this.loadPrices();
+  }
 }
