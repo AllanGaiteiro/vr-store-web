@@ -29,8 +29,14 @@ th {
   }
 }
 
+table .mat-column-store {
+  width: 35%; /* Aumente o percentual conforme necessário */
+}
+
+
 table .mat-column-actions,
 table .mat-column-addButton {
+  padding: 0px;
   width: 1%;
   white-space: nowrap;
 }

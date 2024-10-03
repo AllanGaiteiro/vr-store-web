@@ -1,7 +1,8 @@
 <nav class="nav-container">
+  <app-back-button *ngIf="route === 'cadastro'"></app-back-button>
+
   <app-add-button *ngIf="route === 'produto'"></app-add-button>
   <app-save-button *ngIf="route === 'cadastro'"></app-save-button>
-  <app-back-button *ngIf="route === 'cadastro'"></app-back-button>
   <app-delete-product-button
     *ngIf="route === 'cadastro' && id"
     [id]="id"

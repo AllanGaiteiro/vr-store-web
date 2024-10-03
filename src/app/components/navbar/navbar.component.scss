@@ -1,18 +1,15 @@
 .nav-container {
   display: flex;
-  justify-content: space-between;
-  align-items: center; 
-  padding: 10px; 
-
+  position: relative; /* Para usar position absolute no h2 */
 }
 
 .nav-container h2 {
-  flex-grow: 1; 
-  text-align: center; 
-  margin: auto; 
-  text-align: center;
+  position: absolute; /* Remove o h2 do fluxo normal */
+  left: 50%; /* Move o h2 para o centro */
+  transform: translateX(-50%); /* Ajusta a posição para centralizá-lo */
   color: #fe9e23; 
   font-size: 1.8em;
   font-weight: bold;
   letter-spacing: 1px;
+  margin: 0; /* Remove margens */
 }
