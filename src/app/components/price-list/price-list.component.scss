@@ -29,9 +29,8 @@ th {
   }
 }
 
-/* Diminuindo a primeira coluna */
-td:first-child,
-th:first-child {
-  width: 30px;
-  text-align: center;
+table .mat-column-actions,
+table .mat-column-addButton {
+  width: 1%;
+  white-space: nowrap;
 }
