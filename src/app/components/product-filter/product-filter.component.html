@@ -5,7 +5,11 @@
   </div>
   <div class="form-group">
     <label for="description">Descrição</label>
-    <input formControlName="description" id="description" placeholder="Descrição" />
+    <input
+      formControlName="description"
+      id="description"
+      placeholder="Descrição"
+    />
   </div>
   <div class="form-group cost-group">
     <label for="cost">Custo</label>
@@ -14,12 +18,29 @@
         <option value="<=">&lt;=</option>
         <option value=">=">&gt;=</option>
       </select>
-      <input formControlName="cost" id="cost" type="number" placeholder="Custo" />
+      <input
+        formControlName="cost"
+        id="cost"
+        type="number"
+        placeholder="Custo"
+      />
     </div>
   </div>
   <div class="form-group">
     <label for="price">Preço de Venda</label>
-    <input formControlName="price" id="price" type="number" placeholder="Preço de Venda" />
+
+    <div>
+      <select formControlName="costOperator" id="costOperator">
+        <option value="<=">&lt;=</option>
+        <option value=">=">&gt;=</option>
+      </select>
+      <input
+        formControlName="price"
+        id="price"
+        type="number"
+        placeholder="Preço de Venda"
+      />
+    </div>
   </div>
   <button (click)="resetFilters()">Limpar Filtros</button>
 </form>

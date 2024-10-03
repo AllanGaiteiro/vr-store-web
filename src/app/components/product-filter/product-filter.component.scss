@@ -1,7 +1,7 @@
-
 /* Filtros Responsivos */
 .filters {
-  display: flex;
+  display: grid;
+  grid-template-columns: 1fr 1fr 4fr 4fr 2fr;
   flex-wrap: wrap;
   gap: 10px;
   margin-bottom: 20px;
@@ -12,14 +12,18 @@
   flex-direction: column;
 }
 
+.cost-inputs {
+  display: flex;
+}
+
 .form-group label {
   margin-bottom: 5px;
   font-size: 14px;
-  color: #333;
+  color: #fe9e23;
 }
 
-.filters input,select {
-  flex: 1;
+.filters input,
+select {
   padding: 0px 10px;
   height: 45px;
   border: 1px solid #ddd;
@@ -28,15 +32,33 @@
   transition: border-color 0.3s;
 }
 
+.filters input {
+  max-width: 100%;
+}
+
 .filters input:focus {
   border-color: #fe9e23;
   outline: none;
 }
 
-button{
+button {
+  display: flex;
   height: 45px;
-  margin: auto ;
+  width: 100%;
+  text-align: center;
+  vertical-align: middle;
+  background-color: white;
   margin-top: 25px;
+  padding: 12px 15px;
+  font-size: 1rem;
+  border: 1px solid #fe9e23;
+  color: #fe9e23;
+}
+
+button:hover {
+  background-color: #fe9e23;
+  color: white;
+  border: 1px solid #fe9e23;
 }
 
 /* Responsividade para Dispositivos Móveis */
@@ -50,7 +72,8 @@ button{
     margin-bottom: 10px;
   }
 
-  .mat-header-cell, .mat-cell {
+  .mat-header-cell,
+  .mat-cell {
     font-size: 14px;
     padding: 10px;
   }
@@ -66,7 +89,7 @@ button{
   white-space: nowrap;
 }
 
-#costOperator{
+#costOperator {
   margin-right: 5px;
   padding: 0px 10px;
 }
