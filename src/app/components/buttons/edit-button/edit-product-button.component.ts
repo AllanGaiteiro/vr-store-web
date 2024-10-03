@@ -1,9 +1,9 @@
 import { CommonModule } from '@angular/common';
-import { ChangeDetectionStrategy, Component, Input } from '@angular/core';
+import { Component, Input } from '@angular/core';
 import { Router } from '@angular/router';
 
 @Component({
-  selector: 'app-edit-button',
+  selector: 'app-edit-product-button',
   standalone: true,
   imports: [CommonModule],
   template: `
@@ -12,9 +12,8 @@ import { Router } from '@angular/router';
     </button>
   `,
   styleUrl: './edit-button.component.scss',
-  changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class EditButtonComponent {
+export class EditProductButtonComponent {
   @Input() id?: number;
   constructor(private router: Router) {}
 

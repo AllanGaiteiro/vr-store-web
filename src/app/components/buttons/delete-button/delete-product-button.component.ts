@@ -1,10 +1,9 @@
 import { CommonModule } from '@angular/common';
 import { Component, Input } from '@angular/core';
-import { ProductService } from '../../../services/Product.service';
-import { HttpClientModule } from '@angular/common/http';
+import { ProductService } from '../../../services/product.service';
 
 @Component({
-  selector: 'app-delete-button',
+  selector: 'app-delete-product-button',
   standalone: true,
   imports: [CommonModule],
   template: `<button
@@ -17,7 +16,7 @@ import { HttpClientModule } from '@angular/common/http';
   styleUrl: './delete-button.component.scss',
 
 })
-export class DeleteButtonComponent {
+export class DeleteProductButtonComponent {
   @Input() id?: number;
   constructor(private productService: ProductService) {}
 
