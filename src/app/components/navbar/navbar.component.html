@@ -2,10 +2,10 @@
   <app-add-button *ngIf="route === 'produto'"></app-add-button>
   <app-save-button *ngIf="route === 'cadastro'"></app-save-button>
   <app-back-button *ngIf="route === 'cadastro'"></app-back-button>
-  <app-delete-button
+  <app-delete-product-button
     *ngIf="route === 'cadastro' && id"
     [id]="id"
-  ></app-delete-button>
+  ></app-delete-product-button>
   <h2 *ngIf="route === 'produto'">Consulta de Produto</h2>
   <h2 *ngIf="route === 'cadastro'">Cadastro de Produto</h2>
 </nav>

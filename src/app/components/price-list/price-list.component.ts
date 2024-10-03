@@ -3,9 +3,11 @@ import { Price } from '../../models/Price';
 import { PriceService } from '../../services/price.service';
 import { CommonModule } from '@angular/common';
 import { HttpClientModule } from '@angular/common/http';
-import { AddButtonComponent } from '../button/add-button/add-button.component';
 import { MatTableDataSource, MatTableModule } from '@angular/material/table';
 import { MatSort, MatSortModule } from '@angular/material/sort';
+import { AddNewPriceButtonComponent } from '../buttons/add-button/add-new-price-button.component';
+import { EditPriceButtonComponent } from '../buttons/edit-button/edit-price-button.component';
+import { DeletePriceButtonComponent } from '../buttons/delete-button/delete-price-button.component';
 
 @Component({
   selector: 'app-price-list',
@@ -13,9 +15,11 @@ import { MatSort, MatSortModule } from '@angular/material/sort';
   imports: [
     CommonModule,
     HttpClientModule,
-    AddButtonComponent,
     MatTableModule,
     MatSortModule,
+    AddNewPriceButtonComponent,
+    EditPriceButtonComponent,
+    DeletePriceButtonComponent,
   ],
   templateUrl: './price-list.component.html',
   styleUrls: ['./price-list.component.scss'],
