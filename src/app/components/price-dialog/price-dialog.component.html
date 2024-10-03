@@ -1,0 +1,29 @@
+<div mat-dialog-title class="dialog-header" *ngIf="priceForm">
+  <div class="dialog-actions">
+    <button
+      mat-flat-button
+      color="primary"
+      (click)="save()"
+      [disabled]="priceForm.invalid"
+      class="save-button"
+    >
+      Salvar
+    </button>
+    <h1 class="dialog-title">
+      {{ isEditMode ? "Alteração" : "Inclusão" }} de Preço
+    </h1>
+
+    <button
+      mat-flat-button
+      color="warn"
+      (click)="onNoClick()"
+      class="close-button"
+    >
+      Fechar
+    </button>
+  </div>
+</div>
+
+<div mat-dialog-content *ngIf="priceForm">
+  <app-price-form [priceForm]="priceForm" [stores]="stores"></app-price-form>
+</div>
