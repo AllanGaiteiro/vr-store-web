@@ -1,49 +1,5 @@
 <div class="product-list-container">
   <app-navbar route="produto"></app-navbar>
   <app-product-filter></app-product-filter>
-
-  <table
-    mat-table
-    [dataSource]="products"
-    class="mat-elevation-z8 product-table"
-  >
-    <!-- Código -->
-    <ng-container matColumnDef="id">
-      <th mat-header-cell *matHeaderCellDef>Código</th>
-      <td mat-cell *matCellDef="let product">{{ product.id }}</td>
-    </ng-container>
-
-    <!-- Descrição -->
-    <ng-container matColumnDef="description">
-      <th mat-header-cell *matHeaderCellDef>Descrição</th>
-      <td mat-cell *matCellDef="let product">{{ product.description }}</td>
-    </ng-container>
-
-    <!-- Preço de Venda -->
-    <ng-container matColumnDef="price">
-      <th mat-header-cell *matHeaderCellDef>Custo (R$)</th>
-      <td mat-cell *matCellDef="let product">{{ product.cost | currency }}</td>
-    </ng-container>
-
-    <!-- Ações (Editar e Deletar) -->
-    <ng-container matColumnDef="actions">
-      <th mat-header-cell *matHeaderCellDef>Ações</th>
-      <td mat-cell *matCellDef="let product">
-        <app-edit-product-button [id]="product.id"></app-edit-product-button>
-        <app-delete-product-button
-          [id]="product.id"
-        ></app-delete-product-button>
-      </td>
-    </ng-container>
-
-    <!-- Linhas da tabela -->
-    <tr
-      mat-header-row
-      *matHeaderRowDef="['id', 'description', 'price', 'actions']"
-    ></tr>
-    <tr
-      mat-row
-      *matRowDef="let row; columns: ['id', 'description', 'price', 'actions']"
-    ></tr>
-  </table>
+  <app-product-list></app-product-list>
 </div>
