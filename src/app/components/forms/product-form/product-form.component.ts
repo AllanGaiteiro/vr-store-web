@@ -2,8 +2,8 @@ import { CommonModule } from '@angular/common';
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { ReactiveFormsModule, FormGroup } from '@angular/forms';
 import { Subscription } from 'rxjs';
-import { ProductFormService } from '../../services/product-form.service';
-import { Product } from '../../models/Product';
+import { ProductFormService } from '../../../services/product-form.service';
+import { Product } from '../../../models/Product';
 
 @Component({
   selector: 'app-product-form',

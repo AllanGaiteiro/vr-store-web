@@ -23,7 +23,7 @@ import { FormGroup } from '@angular/forms';
     MatDialogModule,
     MatSnackBarModule,
     PriceFormComponent,
-],
+  ],
   templateUrl: './price-dialog.component.html',
   styleUrls: ['./price-dialog.component.scss'],
   providers: [ToastService, PriceService, StoreService],
@@ -45,9 +45,10 @@ export class PriceDialogComponent implements OnInit {
   }
 
   ngOnInit(): void {
-
     this.storeService.getStores().subscribe((res) => {
-      this.stores = res;
+      this.stores = res.sort((a, b) =>
+        a.description > b.description ? 1 : -1
+      );
     });
 
     if (this.data?.id) {

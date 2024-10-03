@@ -1,13 +1,13 @@
 import { CommonModule } from '@angular/common';
 import { Component, OnDestroy, OnInit } from '@angular/core';
-import { NavbarComponent } from '../../components/navbar/navbar.component';
+import { NavbarComponent } from '../../navbar/navbar.component';
 import { ActivatedRoute } from '@angular/router';
 import { Subscription } from 'rxjs';
 import { ReactiveFormsModule } from '@angular/forms';
-import { ProductFormComponent } from '../../components/product-form/product-form.component';
-import { ProductService } from '../../services/product.service';
-import { ProductFormService } from '../../services/product-form.service';
-import { PriceListComponent } from '../../components/price-list/price-list.component';
+import { ProductFormComponent } from '../../forms/product-form/product-form.component';
+import { ProductService } from '../../../services/product.service';
+import { ProductFormService } from '../../../services/product-form.service';
+import { PriceListComponent } from '../../lists/price-list/price-list.component';
 
 @Component({
   selector: 'app-page-product',

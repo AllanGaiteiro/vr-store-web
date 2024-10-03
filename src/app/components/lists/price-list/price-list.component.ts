@@ -1,13 +1,13 @@
 import { Component, Input, OnInit, ViewChild } from '@angular/core';
-import { Price } from '../../models/Price';
-import { PriceService } from '../../services/price.service';
+import { Price } from '../../../models/Price';
+import { PriceService } from '../../../services/price.service';
 import { CommonModule } from '@angular/common';
 import { HttpClientModule } from '@angular/common/http';
 import { MatTableDataSource, MatTableModule } from '@angular/material/table';
 import { MatSort, MatSortModule } from '@angular/material/sort';
-import { AddNewPriceButtonComponent } from '../buttons/add-button/add-new-price-button.component';
-import { EditPriceButtonComponent } from '../buttons/edit-button/edit-price-button.component';
-import { DeletePriceButtonComponent } from '../buttons/delete-button/delete-price-button.component';
+import { AddNewPriceButtonComponent } from '../../buttons/add-button/add-new-price-button.component';
+import { EditPriceButtonComponent } from '../../buttons/edit-button/edit-price-button.component';
+import { DeletePriceButtonComponent } from '../../buttons/delete-button/delete-price-button.component';
 
 @Component({
   selector: 'app-price-list',

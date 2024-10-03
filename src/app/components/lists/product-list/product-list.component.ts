@@ -9,12 +9,12 @@ import {
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { MatTableModule } from '@angular/material/table';
 import { Subscription } from 'rxjs';
-import { Product } from '../../models/Product';
-import { ProductFilter } from '../../models/ProductFilter';
-import { ProductFilterService } from '../../services/product-filter.service';
-import { ProductService } from '../../services/product.service';
-import { DeleteProductButtonComponent } from '../buttons/delete-button/delete-product-button.component';
-import { EditProductButtonComponent } from '../buttons/edit-button/edit-product-button.component';
+import { Product } from '../../../models/Product';
+import { ProductFilter } from '../../../models/ProductFilter';
+import { ProductFilterService } from '../../../services/product-filter.service';
+import { ProductService } from '../../../services/product.service';
+import { DeleteProductButtonComponent } from '../../buttons/delete-button/delete-product-button.component';
+import { EditProductButtonComponent } from '../../buttons/edit-button/edit-product-button.component';
 
 @Component({
   selector: 'app-product-list',

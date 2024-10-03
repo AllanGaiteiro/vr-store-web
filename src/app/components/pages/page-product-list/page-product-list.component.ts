@@ -1,8 +1,8 @@
 import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { NavbarComponent } from '../../components/navbar/navbar.component';
-import { ProductFilterComponent } from '../../components/product-filter/product-filter.component';
-import { ProductListComponent } from '../../components/product-list/product-list.component';
+import { NavbarComponent } from '../../navbar/navbar.component';
+import { ProductFilterComponent } from '../../product-filter/product-filter.component';
+import { ProductListComponent } from '../../lists/product-list/product-list.component';
 import { ReactiveFormsModule } from '@angular/forms';
 
 @Component({
