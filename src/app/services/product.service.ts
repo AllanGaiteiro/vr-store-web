@@ -25,7 +25,6 @@ export class ProductService {
     const params = filter
       ? { params: this.paramsService.buildProductParams(filter) }
       : {};
-
     if (filter?.price) {
       const filterPrice: FilterPrices = {
         productId: filter.id,

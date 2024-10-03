@@ -17,7 +17,6 @@ export class ParamsService {
     }
 
     if (filter.description) {
-      console.log(filter.description);
       params = params.set('description', filter.description.toString());
     }
 
