@@ -2,7 +2,9 @@
   <table mat-table [dataSource]="dataSource" matSort>
     <ng-container matColumnDef="addButton">
       <th mat-header-cell *matHeaderCellDef>
-        <app-add-new-price-button (priceAdded)="onPriceAdded()"></app-add-new-price-button>
+        <app-add-new-price-button
+          (priceAdded)="onSetPriceList()"
+        ></app-add-new-price-button>
       </th>
       <td mat-cell *matCellDef="let price"></td>
     </ng-container>
@@ -23,8 +25,14 @@
     <ng-container matColumnDef="actions">
       <th mat-header-cell *matHeaderCellDef>Ações</th>
       <td mat-cell *matCellDef="let price">
-        <app-edit-price-button [price]="price"></app-edit-price-button>
-        <app-delete-price-button [id]="price.id"></app-delete-price-button>
+        <app-edit-price-button
+          [price]="price"
+          (priceEdited)="onSetPriceList()"
+        ></app-edit-price-button>
+        <app-delete-price-button
+          [id]="price.id"
+          (priceDeleted)="onSetPriceList()"
+        ></app-delete-price-button>
       </td>
     </ng-container>
 

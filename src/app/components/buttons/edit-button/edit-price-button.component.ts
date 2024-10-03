@@ -1,5 +1,5 @@
 import { CommonModule } from '@angular/common';
-import { Component, Input } from '@angular/core';
+import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { Router } from '@angular/router';
 import { PriceDialogComponent } from '../../price-dialog/price-dialog.component';
@@ -20,6 +20,7 @@ import { faEdit } from '@fortawesome/free-solid-svg-icons'; // Ícone de editar
 })
 export class EditPriceButtonComponent {
   @Input() price?: Price;
+  @Output() priceEdited = new EventEmitter<void>();
   faEdit = faEdit;
   constructor(private dialog: MatDialog) {}
 
@@ -33,6 +34,8 @@ export class EditPriceButtonComponent {
     dialogRef.afterClosed().subscribe((result) => {
       if (result) {
         console.log('Preço adicionado:', result);
+        this.priceEdited.emit();
+
       }
     });
   }

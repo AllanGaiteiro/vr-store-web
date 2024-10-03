@@ -25,9 +25,9 @@ export class DeleteProductButtonComponent {
 
   deleteProduct(productId: number): void {
     if (confirm('Tem certeza que deseja deletar este produto?')) {
-      this.productService
-        .deleteProduct(productId)
-        .then(() => console.log('produto deletado com sucesso'));
+      this.productService.deleteProduct(productId).then(() => {
+        console.log('produto deletado com sucesso');
+      });
     }
   }
 }
