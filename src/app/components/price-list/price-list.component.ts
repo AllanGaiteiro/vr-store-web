@@ -31,6 +31,9 @@ export class PriceListComponent implements OnInit {
   dataSource: MatTableDataSource<Price>;
 
   @ViewChild(MatSort) sort?: MatSort;
+  page?: number;
+  limit?: number;
+  maxLength?: number;
 
   constructor(private priceService: PriceService) {
     this.dataSource = new MatTableDataSource(this.prices);
@@ -45,7 +48,10 @@ export class PriceListComponent implements OnInit {
     this.priceService
       .getPrices({ productId: this.prodId })
       .subscribe((data) => {
-        this.prices = data;
+        this.prices = data.data;
+        this.page = data.page;
+        this.limit = data.limit;
+        this.maxLength = data.length;
         this.dataSource.data = this.prices;
         this.dataSource.sort = this.sort || this.dataSource.sort;
         this.dataSource.sortingDataAccessor = (item, property) => {
@@ -61,7 +67,7 @@ export class PriceListComponent implements OnInit {
       });
   }
 
-  onPriceAdded() {
+  onSetPriceList() {
     this.loadPrices();
   }
 }
