@@ -1,0 +1,62 @@
+.dialog-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 14px;
+}
+
+.dialog-title {
+  font-size: 1.4rem;
+  margin: auto;
+  font-weight: bold;
+}
+
+.dialog-actions {
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+  gap: 16px; // Aumentei o espaçamento entre os botões
+}
+
+.form-container {
+  display: flex;
+  gap: 24px;
+}
+
+.form-field {
+  width: 100%;
+  font-size: 1.25rem;
+}
+
+.save-button,
+.close-button {
+  font-weight: bold;
+  font-size: 1.25rem; // Aumentei o tamanho da fonte dos botões
+  padding: 6px 12px; // Aumentei o tamanho do botão
+  border-radius: 8px; // Adicionei bordas mais arredondadas para um visual mais moderno
+}
+
+.save-button {
+  background-color: #fe9e23;
+  margin: 0px;
+  border: 1px solid #fe9e23;
+  color: white;
+  &:hover {
+    background-color: #fd8c00;
+  }
+  &:disabled {
+    background-color: white;
+    color: #fd8c00;
+  }
+}
+
+.close-button {
+  background-color: white;
+  margin: 0px;
+  border: 1px solid #e64a19;
+  color: #e64a19;
+  &:hover {
+    background-color: #e64a19;
+    color: white;
+  }
+}

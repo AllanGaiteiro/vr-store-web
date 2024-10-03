@@ -1,0 +1,29 @@
+<form [formGroup]="priceForm" class="form-container">
+    <mat-form-field appearance="fill" class="form-field" *ngIf="stores">
+      <mat-label>Loja</mat-label>
+      <mat-select
+        formControlName="store"
+        [compareWith]="compareStores"
+        required
+      >
+        <mat-option *ngFor="let store of stores" [value]="store">
+          {{ store.id }} - {{ store.description }}
+        </mat-option>
+      </mat-select>
+      <mat-error *ngIf="priceForm.get('store')?.hasError('required')">
+        Loja é obrigatória.
+      </mat-error>
+    </mat-form-field>
+  
+    <mat-form-field appearance="fill" class="form-field">
+      <mat-label>Preço de Venda (R$)</mat-label>
+      <input matInput type="number" formControlName="priceValue" required />
+      <mat-error *ngIf="priceForm.get('priceValue')?.hasError('required')">
+        Preço é obrigatório.
+      </mat-error>
+      <mat-error *ngIf="priceForm.get('priceValue')?.hasError('pattern')">
+        Formato inválido.
+      </mat-error>
+    </mat-form-field>
+  </form>
+  
