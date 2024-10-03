@@ -18,13 +18,28 @@ export class PriceService {
 
   getPrices(
     filters: FilterPrices,
-    singleItemPerProduct = false
-  ): Observable<Price[]> {
-    let params = this.paramsService.buildPriceParams(
-      filters,
-      singleItemPerProduct
-    );
-    return this.http.get<Price[]>(`${this.apiUrl}/prices`, { params });
+    option: {
+      page: number;
+      limit: number;
+      singleItemPerProduct: boolean;
+    } = {
+      page: 1,
+      limit: 10,
+      singleItemPerProduct: false,
+    }
+  ): Observable<{
+    data: Price[];
+    length: number;
+    page: number;
+    limit: number;
+  }> {
+    let params = this.paramsService.buildPriceParams(filters, option);
+    return this.http.get<{
+      data: Price[];
+      length: number;
+      page: number;
+      limit: number;
+    }>(`${this.apiUrl}/prices`, { params });
   }
 
   createPrice(newPrice: Price): Promise<Price> {

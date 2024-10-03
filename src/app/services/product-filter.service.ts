@@ -13,6 +13,8 @@ export class ProductFilterService {
 
   private createFilterForm(): void {
     this.formGroup = this.fb.group({
+      page: [0],
+      limit: [10],
       id: [null],
       description: [null],
       cost: [null],
@@ -24,5 +26,16 @@ export class ProductFilterService {
 
   getFormGroup(): FormGroup {
     return this.formGroup;
+  }
+
+  setPage(pageIndex: number) {
+    if (this.formGroup.get('page')?.value !== pageIndex) {
+      this.formGroup.get('page')?.setValue(pageIndex);
+    }
+  }
+  setLimit(pageSize: number) {
+    if (this.formGroup.get('limit')?.value !== pageSize) {
+      this.formGroup.get('limit')?.setValue(pageSize);
+    }
   }
 }

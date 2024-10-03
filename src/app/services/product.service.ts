@@ -13,7 +13,12 @@ import { ParamsService } from './params.service';
 })
 export class ProductService {
   private apiUrl = environment.apiUrl;
-  private productsSubject = new Subject<Product[]>();
+  private productsSubject = new Subject<{
+    data: Product[];
+    length: number;
+    page: number;
+    limit: number;
+  }>();
 
   constructor(
     private http: HttpClient,
@@ -21,24 +26,56 @@ export class ProductService {
     private paramsService: ParamsService
   ) {}
 
-  getProducts(filter?: ProductFilter): Observable<Product[]> {
-    const params = filter
-      ? { params: this.paramsService.buildProductParams(filter) }
-      : {};
-    if (filter?.price) {
+  getProducts(
+    filter?: ProductFilter,
+    page: number = 1,
+    limit: number = 10
+  ): Observable<{
+    data: Product[];
+    length: number;
+    page: number;
+    limit: number;
+  }> {
+    if (filter?.price !== undefined || filter?.price !== null) {
+      const params = filter
+        ? {
+            params: this.paramsService.buildProductParams(filter, {
+              page,
+              limit,
+            }),
+          }
+        : {};
+      console.log('products', params);
+
+      return this.http.get<{
+        data: Product[];
+        length: number;
+        page: number;
+        limit: number;
+      }>(`${this.apiUrl}/products`, params);
+    } else {
+      console.log('filterPrice', page, limit);
+
       const filterPrice: FilterPrices = {
-        productId: filter.id,
-        price: filter.price,
-        cost: filter.cost,
-        description: filter.description,
-        costOperator: filter.costOperator,
-        priceOperator: filter.priceOperator,
+        productId: filter?.id,
+        price: filter?.price,
+        cost: filter?.cost,
+        description: filter?.description,
+        costOperator: filter?.costOperator,
+        priceOperator: filter?.priceOperator,
       };
       return this.priceService
-        .getPrices(filterPrice, true)
-        .pipe(map((res) => res.map((price) => price.product)));
-    } else {
-      return this.http.get<Product[]>(`${this.apiUrl}/products`, params);
+        .getPrices(filterPrice, {
+          page,
+          limit,
+          singleItemPerProduct: true,
+        })
+        .pipe(
+          map((res) => ({
+            ...res,
+            data: res.data.map((d) => d.product),
+          }))
+        );
     }
   }
 
@@ -77,7 +114,12 @@ export class ProductService {
   }
 
   // Método para expor o Subject para que os componentes possam se inscrever
-  getProductsUpdates(): Observable<Product[]> {
+  getProductsUpdates(): Observable<{
+    data: Product[];
+    length: number;
+    page: number;
+    limit: number;
+  }> {
     return this.productsSubject.asObservable();
   }
 }

@@ -9,7 +9,13 @@ import { FilterPrices } from '../models/FilterPrices';
 export class ParamsService {
   constructor() {}
 
-  buildProductParams(filter: ProductFilter): HttpParams {
+  buildProductParams(
+    filter: ProductFilter,
+    option: {
+      page: number;
+      limit: number;
+    }
+  ): HttpParams {
     let params = new HttpParams();
 
     if (filter.id) {
@@ -28,10 +34,24 @@ export class ParamsService {
       }
     }
 
+    if (option.page) {
+      params = params.set('page', option.page.toString());
+    }
+    if (option.limit) {
+      params = params.set('limit', option.limit.toString());
+    }
+
     return params;
   }
 
-  buildPriceParams(filters: FilterPrices, singleItemPerProduct: boolean) {
+  buildPriceParams(
+    filters: FilterPrices,
+    option: {
+      page: number;
+      limit: number;
+      singleItemPerProduct: boolean;
+    }
+  ) {
     let params = new HttpParams();
 
     if (filters) {
@@ -54,7 +74,6 @@ export class ParamsService {
           params = params.set('minPriceValue', filters.price.toString());
         }
       }
-
       if (filters.cost) {
         if (filters.costOperator === '<=') {
           params = params.set('maxCost', filters.cost.toString());
@@ -62,12 +81,17 @@ export class ParamsService {
           params = params.set('minCost', filters.cost.toString());
         }
       }
-
-      if (singleItemPerProduct) {
+      if (option.singleItemPerProduct) {
         params = params.set(
           'singleItemPerProduct',
-          singleItemPerProduct.toString()
+          option.singleItemPerProduct.toString()
         );
+      }
+      if (option.page) {
+        params = params.set('page', option.page.toString());
+      }
+      if (option.limit) {
+        params = params.set('limit', option.limit.toString());
       }
     }
     return params;
