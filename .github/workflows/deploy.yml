@@ -4,7 +4,7 @@ name: Build and Deploy Angular Project
 on:
   push:
     branches:
-      - main
+      - master
 
 jobs:
   build:
@@ -27,7 +27,7 @@ jobs:
 
       # Step 4: Build the Angular project
       - name: Build the project
-        run: npm run build -- --configuration production --base-href /vr-store-web/
+        run: npm run build -- --configuration production
 
       # Step 5: Deploy to GitHub Pages
       - name: Deploy to GitHub Pages
