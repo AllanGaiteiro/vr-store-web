@@ -36,7 +36,6 @@ import { MatPaginatorModule, PageEvent } from '@angular/material/paginator';
 })
 export class PriceListComponent implements OnInit {
   @Input() prodId: number | null = null;
-  @ViewChild(MatSort) sort?: MatSort;
   isLoading = false;
   hasError = false;
   pageIndex = 0;
@@ -44,8 +43,9 @@ export class PriceListComponent implements OnInit {
   maxLength?: number;
   filter?: FilterPrices;
   dataSource: MatTableDataSource<Price>;
-  prices?: Price[];
-
+  prices?: Price[] = [];
+  sortBy: string = 'store.description';
+  sortOrder: string = 'ASC';
   constructor(private priceService: PriceService) {
     this.dataSource = new MatTableDataSource(this.prices);
   }
@@ -61,25 +61,14 @@ export class PriceListComponent implements OnInit {
         productId: this.prodId,
         page: this.pageIndex,
         limit: this.pageSize,
+        sortBy: this.sortBy,
+        sortOrder: this.sortOrder,
       })
       .subscribe({
         next: (data) => {
           this.prices = data.data;
-          this.pageIndex = data.page;
-          this.pageSize = data.limit;
           this.maxLength = data.length;
           this.dataSource.data = this.prices;
-          this.dataSource.sort = this.sort || this.dataSource.sort;
-          this.dataSource.sortingDataAccessor = (item, property) => {
-            switch (property) {
-              case 'store':
-                return item.store.description;
-              case 'priceValue':
-                return item.priceValue;
-              default:
-                return item.priceValue;
-            }
-          };
         },
         error: () => {
           this.isLoading = false;
@@ -93,6 +82,16 @@ export class PriceListComponent implements OnInit {
   }
 
   onPageChange(event: PageEvent): void {
+    this.loadPrices();
+  }
+
+  changeSort(field: string) {
+    if (this.sortBy === field) {
+      this.sortOrder = this.sortOrder === 'ASC' ? 'DESC' : 'ASC';
+    } else {
+      this.sortBy = field;
+      this.sortOrder = 'ASC';
+    }
     this.loadPrices();
   }
 }

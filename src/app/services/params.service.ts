@@ -1,7 +1,7 @@
 import { HttpParams } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { ProductFilter } from '../models/ProductFilter';
 import { FilterPrices } from '../models/FilterPrices';
+import { ProductFilter } from '../models/ProductFilter';
 
 @Injectable({
   providedIn: 'root',
@@ -9,30 +9,37 @@ import { FilterPrices } from '../models/FilterPrices';
 export class ParamsService {
   constructor() {}
 
-  buildProductParams(filter: ProductFilter): HttpParams {
+  buildProductParams(filters: ProductFilter): HttpParams {
     let params = new HttpParams();
-
-    if (filter.id) {
-      params = params.set('productId', filter.id.toString());
+    if (filters?.id) {
+      params = params.set('productId', filters.id.toString());
     }
 
-    if (filter.description) {
-      params = params.set('description', filter.description.toString());
+    if (filters?.description) {
+      params = params.set('description', filters.description.toString());
     }
 
-    if (filter.cost) {
-      if (filter.costOperator === '<=') {
-        params = params.set('maxCost', filter.cost.toString());
-      } else if (filter.costOperator === '>=') {
-        params = params.set('minCost', filter.cost.toString());
+    if (filters.cost) {
+      if (filters.costOperator === '<=') {
+        params = params.set('maxCost', filters.cost.toString());
+      } else if (filters.costOperator === '>=') {
+        params = params.set('minCost', filters.cost.toString());
       }
     }
 
-    if (filter.page) {
-      params = params.set('page', (filter.page + 1).toString());
+    if (filters?.page !== undefined) {
+      params = params.set('page', (filters.page + 1).toString());
     }
-    if (filter.limit) {
-      params = params.set('limit', filter.limit.toString());
+
+    if (filters?.limit !== undefined) {
+      params = params.set('limit', filters.limit.toString());
+    }
+
+    if (filters?.sortBy) {
+      params = params.append('sortBy', filters.sortBy);
+    }
+    if (filters?.sortOrder) {
+      params = params.append('sortOrder', filters.sortOrder);
     }
 
     return params;
@@ -74,11 +81,18 @@ export class ParamsService {
         }
       }
 
-      if (filters.page) {
+      if (filters?.page !== undefined) {
         params = params.set('page', (filters.page + 1).toString());
       }
       if (filters.limit) {
         params = params.set('limit', filters.limit.toString());
+      }
+
+      if (filters?.sortBy) {
+        params = params.append('sortBy', filters.sortBy);
+      }
+      if (filters?.sortOrder) {
+        params = params.append('sortOrder', filters.sortOrder);
       }
 
       if (option.singleItemPerProduct) {

@@ -13,12 +13,12 @@
       *ngIf="!isLoading && prices && prices.length > 0"
     >
       <ng-container matColumnDef="store">
-        <th mat-header-cell *matHeaderCellDef mat-sort-header>Loja</th>
+        <th mat-header-cell *matHeaderCellDef mat-sort-header  (click)="changeSort('store.description')">Loja</th>
         <td mat-cell *matCellDef="let price">{{ price.store.description }}</td>
       </ng-container>
 
       <ng-container matColumnDef="priceValue">
-        <th mat-header-cell *matHeaderCellDef mat-sort-header>
+        <th mat-header-cell *matHeaderCellDef mat-sort-header  (click)="changeSort('price.priceValue')">
           Preço de Venda
         </th>
         <td mat-cell *matCellDef="let price">
@@ -56,7 +56,7 @@
       [length]="maxLength || prices?.length"
       [pageSize]="pageSize"
       [pageIndex]="pageIndex"
-      [pageSizeOptions]="[5, 8, 10, 20, 50, 100]"
+      [pageSizeOptions]="[5,  10, 20, 50, 100]"
       showFirstLastButtons
       (page)="onPageChange($event)"
     ></mat-paginator>

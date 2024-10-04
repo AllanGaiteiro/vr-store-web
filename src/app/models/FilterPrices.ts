@@ -1,4 +1,6 @@
-export interface FilterPrices {
+import { Filter } from "./Filter";
+
+export interface FilterPrices extends Filter {
   productId?: number;
   storeId?: number;
   price?: number;
@@ -6,6 +8,4 @@ export interface FilterPrices {
   description?: string;
   priceOperator?: '<=' | '>=';
   costOperator?: '<=' | '>=';
-  page?: number;
-  limit?: number;
 }

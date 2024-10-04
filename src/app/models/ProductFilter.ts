@@ -1,9 +1,11 @@
-import { Product } from './Product';
+import { Filter } from './Filter';
 
-export interface ProductFilter extends Product {
+export interface ProductFilter extends Filter {
+  id: number;
+  description: string;
+  cost: number;
+  image: string | null;
   price: number;
   costOperator: '<=' | '>=';
   priceOperator: '<=' | '>=';
-  page?: number;
-  limit?: number;
 }

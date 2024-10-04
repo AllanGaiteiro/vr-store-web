@@ -26,9 +26,7 @@ export class ProductService {
     private paramsService: ParamsService
   ) {}
 
-  getProducts(
-    filter?: ProductFilter,
-  ): Observable<{
+  getProducts(filter?: ProductFilter): Observable<{
     data: Product[];
     length: number;
     page: number;
@@ -90,16 +88,7 @@ export class ProductService {
   deleteProduct(productId: number): Promise<void> {
     return firstValueFrom(
       this.http.delete<void>(`${this.apiUrl}/products/${productId}`)
-    ).then(() => {
-      // Notifica que os produtos mudaram após a exclusão
-      this.fetchProducts(); // Chame um método para reobter os produtos
-    });
-  }
-
-  private fetchProducts(): void {
-    this.getProducts().subscribe((products) => {
-      this.productsSubject.next(products); // Emite a lista atualizada
-    });
+    );
   }
 
   // Método para expor o Subject para que os componentes possam se inscrever
