@@ -3,7 +3,7 @@
 ![GitHub repo size](https://img.shields.io/github/repo-size/AllanGaiteiro/project-reply-playstation-store-web-angular?style=for-the-badge)
 ![GitHub language count](https://img.shields.io/github/languages/count/AllanGaiteiro/project-reply-playstation-store-web-angular?style=for-the-badge)
 [![Link do Swagger](https://img.shields.io/badge/-Swagger-49BE?style=for-the-badge)](https://vr-store-app-f49680f6875e.herokuapp.com/api-docs)
-[![Link para a Página Inicial](https://img.shields.io/badge/Página%20Inicial-ffffff?style=for-the-badge&color=1e3c66)](https://allangaiteiro.github.io/vr-store-web/) 
+[![Link para a Página Inicial](https://img.shields.io/badge/Página%20Inicial-ffffff?style=for-the-badge&color=1e3c66)](https://vr-store-app.web.app/) 
 
 ## Descrição do Projeto
 
