@@ -67,4 +67,11 @@ export class PageProductComponent implements OnInit, OnDestroy {
     this.routeSubscription?.unsubscribe();
     this.producSubscription?.unsubscribe();
   }
+
+  getImage() {
+    return (
+      this.productFormService.getProduct()?.image ||
+      'https://coffective.com/wp-content/uploads/2018/06/default-featured-image.png.jpg'
+    );
+  }
 }
