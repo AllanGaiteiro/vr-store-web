@@ -1,5 +1,10 @@
 # VR Store Web
 
+![GitHub repo size](https://img.shields.io/github/repo-size/AllanGaiteiro/project-reply-playstation-store-web-angular?style=for-the-badge)
+![GitHub language count](https://img.shields.io/github/languages/count/AllanGaiteiro/project-reply-playstation-store-web-angular?style=for-the-badge)
+[![Link do Swagger](https://img.shields.io/badge/-Swagger-49BE?style=for-the-badge)](https://vr-store-app-f49680f6875e.herokuapp.com/api-docs)
+[![Link para a Página Inicial](https://img.shields.io/badge/Página%20Inicial-ffffff?style=for-the-badge&color=1e3c66)](https://allangaiteiro.github.io/vr-store-web/) 
+
 ## Descrição do Projeto
 
 O projeto **VR Store Web** é uma aplicação web desenvolvida em **Angular** com **TypeScript**, voltada para a gestão de produtos. A aplicação permite a visualização, cadastro, edição e exclusão de produtos, oferecendo uma interface intuitiva para interagir com os dados. O sistema oferece funcionalidades de filtro, paginação e ordenação de produtos, proporcionando uma experiência eficiente para o usuário.
