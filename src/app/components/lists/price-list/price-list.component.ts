@@ -12,6 +12,7 @@ import { SpinnerComponent } from '../../spinner/spinner.component';
 import { NotFoundComponent } from '../../not-found/not-found.component';
 import { ErrorListComponent } from '../../error-list/error-list.component';
 import { FilterPrices } from '../../../models/FilterPrices';
+import { MatPaginatorModule, PageEvent } from '@angular/material/paginator';
 
 @Component({
   selector: 'app-price-list',
@@ -21,6 +22,7 @@ import { FilterPrices } from '../../../models/FilterPrices';
     HttpClientModule,
     MatTableModule,
     MatSortModule,
+    MatPaginatorModule,
     AddNewPriceButtonComponent,
     EditPriceButtonComponent,
     DeletePriceButtonComponent,
@@ -54,33 +56,43 @@ export class PriceListComponent implements OnInit {
 
   loadPrices() {
     if (!this.prodId) return;
-    this.priceService.getPrices({ productId: this.prodId }).subscribe({
-      next: (data) => {
-        this.prices = data.data;
-        this.pageIndex = data.page;
-        this.pageSize = data.limit;
-        this.maxLength = data.length;
-        this.dataSource.data = this.prices;
-        this.dataSource.sort = this.sort || this.dataSource.sort;
-        this.dataSource.sortingDataAccessor = (item, property) => {
-          switch (property) {
-            case 'store':
-              return item.store.description;
-            case 'priceValue':
-              return item.priceValue;
-            default:
-              return item.priceValue;
-          }
-        };
-      },
-      error: () => {
-        this.isLoading = false;
-        this.hasError = true;
-      },
-    });
+    this.priceService
+      .getPrices({
+        productId: this.prodId,
+        page: this.pageIndex,
+        limit: this.pageSize,
+      })
+      .subscribe({
+        next: (data) => {
+          this.prices = data.data;
+          this.pageIndex = data.page;
+          this.pageSize = data.limit;
+          this.maxLength = data.length;
+          this.dataSource.data = this.prices;
+          this.dataSource.sort = this.sort || this.dataSource.sort;
+          this.dataSource.sortingDataAccessor = (item, property) => {
+            switch (property) {
+              case 'store':
+                return item.store.description;
+              case 'priceValue':
+                return item.priceValue;
+              default:
+                return item.priceValue;
+            }
+          };
+        },
+        error: () => {
+          this.isLoading = false;
+          this.hasError = true;
+        },
+      });
   }
 
   onSetList() {
+    this.loadPrices();
+  }
+
+  onPageChange(event: PageEvent): void {
     this.loadPrices();
   }
 }

@@ -3,49 +3,64 @@
     (priceAdded)="onSetList()"
     [productId]="prodId"
   ></app-add-new-price-button>
-  <table
-    mat-table
-    [dataSource]="dataSource"
-    matSort
-    class="price-list"
-    *ngIf="!isLoading && prices && prices.length > 0"
-  >
-    <ng-container matColumnDef="store">
-      <th mat-header-cell *matHeaderCellDef mat-sort-header>Loja</th>
-      <td mat-cell *matCellDef="let price">{{ price.store.description }}</td>
-    </ng-container>
 
-    <ng-container matColumnDef="priceValue">
-      <th mat-header-cell *matHeaderCellDef mat-sort-header>Preço de Venda</th>
-      <td mat-cell *matCellDef="let price">
-        {{ price.priceValue | currency : "BRL" }}
-      </td>
-    </ng-container>
+  <div  *ngIf="!isLoading && prices && prices.length > 0">
+    <table
+      mat-table
+      [dataSource]="dataSource"
+      matSort
+      class="price-list"
+      *ngIf="!isLoading && prices && prices.length > 0"
+    >
+      <ng-container matColumnDef="store">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header>Loja</th>
+        <td mat-cell *matCellDef="let price">{{ price.store.description }}</td>
+      </ng-container>
 
-    <!-- Ações (Editar e Deletar) -->
-    <ng-container matColumnDef="actions">
-      <th mat-header-cell *matHeaderCellDef>Ações</th>
-      <td mat-cell *matCellDef="let price">
-        <app-edit-price-button
-          [price]="price"
-          (priceEdited)="onSetList()"
-        ></app-edit-price-button>
-        <app-delete-price-button
-          [id]="price.id"
-          (deleted)="onSetList()"
-        ></app-delete-price-button>
-      </td>
-    </ng-container>
+      <ng-container matColumnDef="priceValue">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header>
+          Preço de Venda
+        </th>
+        <td mat-cell *matCellDef="let price">
+          {{ price.priceValue | currency : "BRL" }}
+        </td>
+      </ng-container>
 
-    <tr
-      mat-header-row
-      *matHeaderRowDef="['store', 'priceValue', 'actions']"
-    ></tr>
-    <tr
-      mat-row
-      *matRowDef="let row; columns: ['store', 'priceValue', 'actions']"
-    ></tr>
-  </table>
+      <!-- Ações (Editar e Deletar) -->
+      <ng-container matColumnDef="actions">
+        <th mat-header-cell *matHeaderCellDef>Ações</th>
+        <td mat-cell *matCellDef="let price">
+          <app-edit-price-button
+            [price]="price"
+            (priceEdited)="onSetList()"
+          ></app-edit-price-button>
+          <app-delete-price-button
+            [id]="price.id"
+            (deleted)="onSetList()"
+          ></app-delete-price-button>
+        </td>
+      </ng-container>
+
+      <tr
+        mat-header-row
+        *matHeaderRowDef="['store', 'priceValue', 'actions']"
+      ></tr>
+      <tr
+        mat-row
+        *matRowDef="let row; columns: ['store', 'priceValue', 'actions']"
+      ></tr>
+    </table>
+
+    <!-- Paginator -->
+    <mat-paginator
+      [length]="maxLength || prices?.length"
+      [pageSize]="pageSize"
+      [pageIndex]="pageIndex"
+      [pageSizeOptions]="[5, 8, 10, 20, 50, 100]"
+      showFirstLastButtons
+      (page)="onPageChange($event)"
+    ></mat-paginator>
+  </div>
 
   <app-spinner [isLoading]="isLoading"></app-spinner>
   <app-error-list [hasError]="hasError && !isLoading"></app-error-list>

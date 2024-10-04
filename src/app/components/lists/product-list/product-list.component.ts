@@ -47,7 +47,7 @@ export class ProductListComponent {
   filter?: ProductFilter;
   filterFormSubscription?: Subscription;
   productSubscription?: Subscription;
-  
+
   constructor(
     private productService: ProductService,
     private productFilterService: ProductFilterService
@@ -80,13 +80,8 @@ export class ProductListComponent {
   }
 
   onPageChange(event: PageEvent): void {
-    const currentScrollPosition = window.scrollY;
     this.productFilterService.setPage(event.pageIndex);
     this.productFilterService.setLimit(event.pageSize);
-
-    setTimeout(() => {
-      window.scrollTo(0, currentScrollPosition);
-    }, 0);
   }
 
   loadProducts(): void {
