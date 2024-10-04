@@ -8,6 +8,10 @@ import { MatSort, MatSortModule } from '@angular/material/sort';
 import { AddNewPriceButtonComponent } from '../../buttons/add-button/add-new-price-button.component';
 import { EditPriceButtonComponent } from '../../buttons/edit-button/edit-price-button.component';
 import { DeletePriceButtonComponent } from '../../buttons/delete-button/delete-price-button.component';
+import { SpinnerComponent } from '../../spinner/spinner.component';
+import { NotFoundComponent } from '../../not-found/not-found.component';
+import { ErrorListComponent } from '../../error-list/error-list.component';
+import { FilterPrices } from '../../../models/FilterPrices';
 
 @Component({
   selector: 'app-price-list',
@@ -20,6 +24,9 @@ import { DeletePriceButtonComponent } from '../../buttons/delete-button/delete-p
     AddNewPriceButtonComponent,
     EditPriceButtonComponent,
     DeletePriceButtonComponent,
+    SpinnerComponent,
+    NotFoundComponent,
+    ErrorListComponent,
   ],
   templateUrl: './price-list.component.html',
   styleUrls: ['./price-list.component.scss'],
@@ -27,13 +34,15 @@ import { DeletePriceButtonComponent } from '../../buttons/delete-button/delete-p
 })
 export class PriceListComponent implements OnInit {
   @Input() prodId: number | null = null;
-  prices: Price[] = [];
-  dataSource: MatTableDataSource<Price>;
-
   @ViewChild(MatSort) sort?: MatSort;
-  page?: number;
-  limit?: number;
+  isLoading = false;
+  hasError = false;
+  pageIndex = 0;
+  pageSize = 10;
   maxLength?: number;
+  filter?: FilterPrices;
+  dataSource: MatTableDataSource<Price>;
+  prices?: Price[];
 
   constructor(private priceService: PriceService) {
     this.dataSource = new MatTableDataSource(this.prices);
@@ -45,12 +54,11 @@ export class PriceListComponent implements OnInit {
 
   loadPrices() {
     if (!this.prodId) return;
-    this.priceService
-      .getPrices({ productId: this.prodId })
-      .subscribe((data) => {
+    this.priceService.getPrices({ productId: this.prodId }).subscribe({
+      next: (data) => {
         this.prices = data.data;
-        this.page = data.page;
-        this.limit = data.limit;
+        this.pageIndex = data.page;
+        this.pageSize = data.limit;
         this.maxLength = data.length;
         this.dataSource.data = this.prices;
         this.dataSource.sort = this.sort || this.dataSource.sort;
@@ -64,7 +72,12 @@ export class PriceListComponent implements OnInit {
               return item.priceValue;
           }
         };
-      });
+      },
+      error: () => {
+        this.isLoading = false;
+        this.hasError = true;
+      },
+    });
   }
 
   onSetList() {

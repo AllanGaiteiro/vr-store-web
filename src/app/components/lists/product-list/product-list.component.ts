@@ -15,6 +15,9 @@ import { ProductFilterService } from '../../../services/product-filter.service';
 import { ProductService } from '../../../services/product.service';
 import { DeleteProductButtonComponent } from '../../buttons/delete-button/delete-product-button.component';
 import { EditProductButtonComponent } from '../../buttons/edit-button/edit-product-button.component';
+import { SpinnerComponent } from "../../spinner/spinner.component";
+import { NotFoundComponent } from "../../not-found/not-found.component";
+import { ErrorListComponent } from "../../error-list/error-list.component";
 
 @Component({
   selector: 'app-product-list',
@@ -24,25 +27,27 @@ import { EditProductButtonComponent } from '../../buttons/edit-button/edit-produ
     FormsModule,
     MatTableModule,
     MatPaginatorModule,
-    MatProgressSpinnerModule,
     EditProductButtonComponent,
     DeleteProductButtonComponent,
-  ],
+    SpinnerComponent,
+    NotFoundComponent,
+    ErrorListComponent
+],
   templateUrl: './product-list.component.html',
   styleUrl: './product-list.component.scss',
 })
 export class ProductListComponent {
+  @ViewChild(MatPaginator) paginator!: MatPaginator;
   products: Product[] = [];
   isLoading = false;
   hasError = false;
+  pageIndex = 0;
+  pageSize = 8;
+  maxLength?: number;
+  filter?: ProductFilter;
   filterFormSubscription?: Subscription;
   productSubscription?: Subscription;
-  pageIndex = 0; // Índice da página
-  pageSize = 8; // Tamanho da página
-  maxLength?: number; // Quantidade total de produtos
-  @ViewChild(MatPaginator) paginator!: MatPaginator;
-  filter?: ProductFilter;
-
+  
   constructor(
     private productService: ProductService,
     private productFilterService: ProductFilterService

@@ -1,18 +1,11 @@
 <div class="product-list-container">
-  <div *ngIf="isLoading" class="spinner-container">
-    <mat-spinner></mat-spinner>
-  </div>
+  <app-spinner [isLoading]="isLoading"></app-spinner>
 
-  <div *ngIf="hasError && !isLoading" class="error-message">
-    Ocorreu um erro ao carregar os produtos. Tente novamente.
-  </div>
+  <app-error-list [hasError]="hasError && !isLoading"></app-error-list>
 
-  <div
-    *ngIf="!isLoading && products.length === 0 && !hasError"
-    class="no-products-message"
-  >
-    Nenhum produto encontrado.
-  </div>
+  <app-not-found
+    [notFound]="!isLoading && products.length === 0 && !hasError"
+  ></app-not-found>
 
   <!-- Tabela de produtos -->
   <table
