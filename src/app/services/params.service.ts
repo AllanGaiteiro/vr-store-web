@@ -27,11 +27,11 @@ export class ParamsService {
       }
     }
 
-    if (filters?.page !== undefined) {
+    if (filters?.page !== undefined && filters?.page !== null) {
       params = params.set('page', (filters.page + 1).toString());
     }
 
-    if (filters?.limit !== undefined) {
+    if (filters?.limit !== undefined && filters?.limit !== null) {
       params = params.set('limit', filters.limit.toString());
     }
 

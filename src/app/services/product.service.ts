@@ -32,6 +32,8 @@ export class ProductService {
     page: number;
     limit: number;
   }> {
+
+    console.log(filter)
     if (filter?.price !== undefined || filter?.price !== null) {
       const params = filter
         ? {
