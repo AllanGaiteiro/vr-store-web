@@ -29,12 +29,4 @@ export class ProductFormComponent implements OnInit, OnDestroy {
   ngOnDestroy(): void {
     this.productSubscription?.unsubscribe();
   }
-
-  onFileSelected(event: any): void {
-    const file = event.target.files[0];
-    if (file) {
-      this.productForm.patchValue({ image: file });
-      this.productForm.get('image')?.updateValueAndValidity();
-    }
-  }
 }

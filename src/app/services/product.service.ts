@@ -32,8 +32,7 @@ export class ProductService {
     page: number;
     limit: number;
   }> {
-
-    console.log(filter)
+    console.log(filter);
     if (filter?.price !== undefined || filter?.price !== null) {
       const params = filter
         ? {
@@ -78,10 +77,13 @@ export class ProductService {
     );
   }
 
-  async updateProduct(updateProduct: Product): Promise<Product> {
+  async updateProduct(
+    prodId: number,
+    updateProduct: Partial<Product>
+  ): Promise<Product> {
     return firstValueFrom(
       this.http.patch<Product>(
-        `${this.apiUrl}/products/${updateProduct.id}`,
+        `${this.apiUrl}/products/${prodId}`,
         updateProduct
       )
     );

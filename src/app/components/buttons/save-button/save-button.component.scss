@@ -8,5 +8,12 @@ button.save-button {
 
 button.save-button:hover {
   background-color: #fd8c00; 
-  transform: translateY(-2px); 
+}
+
+button.save-button:disabled {
+  background-color: #cccccc;
+  border-color: #999999;
+  color: #666666; 
+  cursor: not-allowed; 
+  transform: none; 
 }

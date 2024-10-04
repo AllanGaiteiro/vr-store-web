@@ -7,10 +7,11 @@
       <app-price-list [prodId]="prodId"></app-price-list>
     </div>
 
-    <img
-      class="image-container"
-      [src]="getImage()"
-      alt="Produto"
-    />
+    <div>
+      <img class="image-container" [src]="getImage()" alt="Produto" />
+      <app-image-upload
+        (imageUrlChange)="onImageUrlChange($event)"
+      ></app-image-upload>
+    </div>
   </div>
 </div>

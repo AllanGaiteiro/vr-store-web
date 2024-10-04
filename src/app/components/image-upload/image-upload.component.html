@@ -1,0 +1,7 @@
+<form [formGroup]="imageForm" (ngSubmit)="onSubmit()">
+  <div class="form-group">
+    <input formControlName="imageUrl" id="imageUrl" placeholder="URL da Imagem" />
+  </div>
+
+  <app-save-button-image [disabled]="imageForm.invalid"></app-save-button-image>
+</form>

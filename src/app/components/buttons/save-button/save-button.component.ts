@@ -37,9 +37,11 @@ export class SaveButtonComponent {
         }
       });
     } else {
-      this.productService.updateProduct(productData).then((res) => {
-        console.log('update product');
-      });
+      this.productService
+        .updateProduct(productData.id, productData)
+        .then((res) => {
+          console.log('update product');
+        });
     }
   }
 }

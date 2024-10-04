@@ -8,6 +8,7 @@ import { ProductFormComponent } from '../../forms/product-form/product-form.comp
 import { ProductService } from '../../../services/product.service';
 import { ProductFormService } from '../../../services/product-form.service';
 import { PriceListComponent } from '../../lists/price-list/price-list.component';
+import { ImageUploadComponent } from '../../image-upload/image-upload.component';
 
 @Component({
   selector: 'app-page-product',
@@ -18,6 +19,7 @@ import { PriceListComponent } from '../../lists/price-list/price-list.component'
     NavbarComponent,
     ProductFormComponent,
     PriceListComponent,
+    ImageUploadComponent,
   ],
   templateUrl: './page-product.component.html',
   styleUrl: './page-product.component.scss',
@@ -29,6 +31,7 @@ export class PageProductComponent implements OnInit, OnDestroy {
   runProduct = true;
   imgDefault =
     'https://coffective.com/wp-content/uploads/2018/06/default-featured-image.png.jpg';
+  productImage: string | null = null;
   constructor(
     private activatedRoute: ActivatedRoute,
     private producService: ProductService,
@@ -54,24 +57,29 @@ export class PageProductComponent implements OnInit, OnDestroy {
     });
   }
 
-  private observeProduct(prodId: number) {
-    this.producSubscription = this.producService.getProduct(prodId).subscribe({
-      next: (res) => {
-        this.productFormService.setProduct(res);
-      },
-      complete: () => (this.runProduct = false),
-    });
-  }
-
   ngOnDestroy(): void {
     this.routeSubscription?.unsubscribe();
     this.producSubscription?.unsubscribe();
   }
 
-  getImage() {
+  private observeProduct(prodId: number) {
+    this.producSubscription = this.producService.getProduct(prodId).subscribe({
+      next: (res) => {
+        this.productFormService.setProduct(res);
+        this.productImage = res?.image || null;
+      },
+      complete: () => (this.runProduct = false),
+    });
+  }
+  onImageUrlChange(newImageUrl: string) {
     return (
-      this.productFormService.getProduct()?.image ||
-      'https://coffective.com/wp-content/uploads/2018/06/default-featured-image.png.jpg'
+      this.prodId &&
+      this.producService
+        .updateProduct(this.prodId, { image: newImageUrl })
+        .then((res) => (this.productImage = newImageUrl))
     );
+  }
+  getImage() {
+    return this.productImage || this.imgDefault;
   }
 }
