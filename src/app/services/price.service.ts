@@ -40,7 +40,10 @@ export class PriceService {
 
   createPrice(newPrice: Price): Promise<Price> {
     return firstValueFrom(
-      this.http.post<Price>(`${this.apiUrl}/prices`, newPrice)
+      this.http.post<Price>(`${this.apiUrl}/prices`, {
+        ...newPrice,
+        storeId: newPrice.store.id,
+      })
     );
   }
   updatePrice(newPrice: Price): Promise<Price> {

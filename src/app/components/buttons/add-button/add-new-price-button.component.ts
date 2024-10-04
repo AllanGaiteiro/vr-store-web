@@ -1,5 +1,5 @@
 import { CommonModule } from '@angular/common';
-import { Component, EventEmitter, Output } from '@angular/core';
+import { Component, EventEmitter, Input, input, Output } from '@angular/core';
 import { MatDialog, MatDialogModule } from '@angular/material/dialog';
 import { PriceDialogComponent } from '../../price-dialog/price-dialog.component';
 import {
@@ -19,6 +19,7 @@ import { faPlus } from '@fortawesome/free-solid-svg-icons';
   styleUrl: './add-button.component.scss',
 })
 export class AddNewPriceButtonComponent {
+  @Input() productId?: number | null = null;
   @Output() priceAdded = new EventEmitter<void>();
 
   constructor(private dialog: MatDialog, private library: FaIconLibrary) {
@@ -29,6 +30,7 @@ export class AddNewPriceButtonComponent {
     const dialogRef = this.dialog.open(PriceDialogComponent, {
       width: '600px',
       disableClose: true,
+      data: { productId: this.productId },
     });
 
     dialogRef.afterClosed().subscribe((result) => {

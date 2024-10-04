@@ -1,6 +1,7 @@
 <div class="price-list-container">
   <app-add-new-price-button
     (priceAdded)="onSetList()"
+    [productId]="prodId"
   ></app-add-new-price-button>
   <table
     mat-table

@@ -29,17 +29,9 @@ import { ToastService } from '../../../services/toast.service';
   templateUrl: './price-form.component.html',
   styleUrls: ['./price-form.component.scss'],
 })
-export class PriceFormComponent implements OnInit {
+export class PriceFormComponent {
   @Input() priceForm!: FormGroup;
   @Input() stores?: Store[]; // Recebe a lista de lojas do componente pai
-
-  constructor(private priceFormService: PriceFormService) {}
-
-  ngOnInit(): void {
-    if (!this.priceForm) {
-      this.priceForm = this.priceFormService.getFormGroup();
-    }
-  }
 
   compareStores = (store1: Store, store2: Store): boolean => {
     return store1 && store2 ? store1.id === store2.id : store1 === store2;

@@ -66,13 +66,14 @@ export class PriceDialogComponent implements OnInit {
 
   save(): void {
     if (this.priceForm.valid) {
+      const price = { ...this.data, ...this.priceForm.value };
+
       if (this.isEditMode) {
-        const updatedPrice = { ...this.data, ...this.priceForm.value };
-        this.priceService.updatePrice(updatedPrice).then((res) => {
+        this.priceService.updatePrice(price).then((res) => {
           this.dialogRef.close(res);
         });
       } else {
-        this.priceService.createPrice(this.priceForm.value).then((res) => {
+        this.priceService.createPrice(price).then((res) => {
           this.dialogRef.close(res);
         });
       }
