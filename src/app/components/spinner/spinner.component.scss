@@ -1,5 +1,10 @@
 .spinner-container {
   display: flex;
   justify-content: center;
+  align-items: center;
   margin-top: 20px;
+}
+
+.mat-mdc-progress-spinner {
+  --mdc-circular-progress-active-indicator-color: #fe9e23;
 }
