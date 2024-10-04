@@ -44,7 +44,7 @@ export class ProductListComponent {
   isLoading = false;
   hasError = false;
   pageIndex = 0;
-  pageSize = 8;
+  pageSize = 10;
   maxLength?: number;
   filter!: ProductFilter;
   dataSource: MatTableDataSource<Product>;
