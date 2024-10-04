@@ -79,6 +79,6 @@
   <app-error-list [hasError]="hasError && !isLoading"></app-error-list>
 
   <app-not-found
-    [notFound]="!isLoading && products.length === 0 && !hasError"
+    [notFound]="!isLoading && dataSource.data.length === 0 && !hasError"
   ></app-not-found>
 </div>
