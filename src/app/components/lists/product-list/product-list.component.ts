@@ -40,8 +40,8 @@ export class ProductListComponent {
   pageIndex = 0; // Índice da página
   pageSize = 8; // Tamanho da página
   maxLength?: number; // Quantidade total de produtos
-
   @ViewChild(MatPaginator) paginator!: MatPaginator;
+  filter?: ProductFilter;
 
   constructor(
     private productService: ProductService,
@@ -50,9 +50,10 @@ export class ProductListComponent {
     this.filterFormSubscription = this.productFilterService
       .getFormGroup()
       .valueChanges.subscribe((res) => {
+        this.filter = res as ProductFilter;
         this.pageIndex = res.page;
         this.pageSize = res.limit;
-        this.loadProducts(res);
+        this.loadProducts();
       });
   }
 
@@ -83,23 +84,25 @@ export class ProductListComponent {
     }, 0);
   }
 
-  loadProducts(filter?: ProductFilter): void {
+  loadProducts(): void {
     this.isLoading = true;
     this.hasError = false;
 
-    this.productService
-      .getProducts(filter, this.pageIndex + 1, this.pageSize)
-      .subscribe({
-        next: (res) => {
-          this.products = res.data;
-          this.pageSize = res.limit;
-          this.maxLength = res.length;
-          this.isLoading = false;
-        },
-        error: () => {
-          this.isLoading = false;
-          this.hasError = true;
-        },
-      });
+    this.productService.getProducts(this.filter).subscribe({
+      next: (res) => {
+        this.products = res.data;
+        this.pageSize = res.limit;
+        this.maxLength = res.length;
+        this.isLoading = false;
+      },
+      error: () => {
+        this.isLoading = false;
+        this.hasError = true;
+      },
+    });
+  }
+
+  onSetList() {
+    this.loadProducts();
   }
 }

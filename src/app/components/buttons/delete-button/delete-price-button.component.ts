@@ -22,7 +22,7 @@ import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 })
 export class DeletePriceButtonComponent {
   @Input() id?: number;
-  @Output() priceDeleted = new EventEmitter<void>();
+  @Output() deleted = new EventEmitter<void>();
 
   faTrash = faTrash;
   constructor(private priceService: PriceService) {}
@@ -31,7 +31,7 @@ export class DeletePriceButtonComponent {
     if (confirm('Tem certeza que deseja deletar este produto?')) {
       this.priceService.deletePrice(id).then(() => {
         console.log('produto deletado com sucesso');
-        this.priceDeleted.emit();
+        this.deleted.emit();
       });
     }
   }

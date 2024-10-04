@@ -28,8 +28,6 @@ export class ProductService {
 
   getProducts(
     filter?: ProductFilter,
-    page: number = 1,
-    limit: number = 10
   ): Observable<{
     data: Product[];
     length: number;
@@ -39,14 +37,9 @@ export class ProductService {
     if (filter?.price !== undefined || filter?.price !== null) {
       const params = filter
         ? {
-            params: this.paramsService.buildProductParams(filter, {
-              page,
-              limit,
-            }),
+            params: this.paramsService.buildProductParams(filter),
           }
         : {};
-      console.log('products', params);
-
       return this.http.get<{
         data: Product[];
         length: number;
@@ -54,8 +47,6 @@ export class ProductService {
         limit: number;
       }>(`${this.apiUrl}/products`, params);
     } else {
-      console.log('filterPrice', page, limit);
-
       const filterPrice: FilterPrices = {
         productId: filter?.id,
         price: filter?.price,
@@ -66,8 +57,6 @@ export class ProductService {
       };
       return this.priceService
         .getPrices(filterPrice, {
-          page,
-          limit,
           singleItemPerProduct: true,
         })
         .pipe(

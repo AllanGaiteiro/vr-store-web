@@ -6,4 +6,6 @@ export interface FilterPrices {
   description?: string;
   priceOperator?: '<=' | '>=';
   costOperator?: '<=' | '>=';
+  page?: number;
+  limit?: number;
 }

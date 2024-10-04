@@ -67,7 +67,7 @@ export class PriceListComponent implements OnInit {
       });
   }
 
-  onSetPriceList() {
+  onSetList() {
     this.loadPrices();
   }
 }

@@ -19,12 +19,8 @@ export class PriceService {
   getPrices(
     filters: FilterPrices,
     option: {
-      page: number;
-      limit: number;
       singleItemPerProduct: boolean;
     } = {
-      page: 1,
-      limit: 10,
       singleItemPerProduct: false,
     }
   ): Observable<{

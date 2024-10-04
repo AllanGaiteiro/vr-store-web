@@ -3,7 +3,7 @@
     <ng-container matColumnDef="addButton">
       <th mat-header-cell *matHeaderCellDef>
         <app-add-new-price-button
-          (priceAdded)="onSetPriceList()"
+          (priceAdded)="onSetList()"
         ></app-add-new-price-button>
       </th>
       <td mat-cell *matCellDef="let price"></td>
@@ -27,11 +27,11 @@
       <td mat-cell *matCellDef="let price">
         <app-edit-price-button
           [price]="price"
-          (priceEdited)="onSetPriceList()"
+          (priceEdited)="onSetList()"
         ></app-edit-price-button>
         <app-delete-price-button
           [id]="price.id"
-          (priceDeleted)="onSetPriceList()"
+          (deleted)="onSetList()"
         ></app-delete-price-button>
       </td>
     </ng-container>

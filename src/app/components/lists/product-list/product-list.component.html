@@ -46,6 +46,7 @@
         <app-edit-product-button [id]="product.id"></app-edit-product-button>
         <app-delete-product-button
           [id]="product.id"
+          (deleted)="onSetList()"
         ></app-delete-product-button>
       </td>
     </ng-container>
@@ -57,11 +58,7 @@
     ></tr>
     <tr
       mat-row
-      *matRowDef="
-        let row;
-        columns: ['id', 'description', 'price', 'actions'];
-        trackBy: trackById
-      "
+      *matRowDef="let row; columns: ['id', 'description', 'price', 'actions']"
     ></tr>
   </table>
 
