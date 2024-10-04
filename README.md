@@ -1,27 +1,78 @@
-# VrStoreWeb
+# VR Store Web
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 17.3.10.
+## Descrição do Projeto
 
-## Development server
+O projeto **VR Store Web** é uma aplicação web desenvolvida em **Angular** com **TypeScript**, voltada para a gestão de produtos. A aplicação permite a visualização, cadastro, edição e exclusão de produtos, oferecendo uma interface intuitiva para interagir com os dados. O sistema oferece funcionalidades de filtro, paginação e ordenação de produtos, proporcionando uma experiência eficiente para o usuário.
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The application will automatically reload if you change any of the source files.
+## Funcionalidades
 
-## Code scaffolding
+### Página de Consulta de Produtos
 
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
+- **Filtros**: Permite a busca de produtos por:
+  - **Código** (ID do produto)
+  - **Descrição** (termos contidos na descrição)
+  - **Custo** (valor de aquisição)
+  - **Preço de Venda** (valor de venda nas lojas)
 
-## Build
+- **Tabela de Dados**: Exibe os produtos filtrados com as colunas:
+  - Código
+  - Descrição
+  - Preço de Venda
 
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory.
+- **Ações**:
+  - **Incluir**: Navega para o cadastro de um novo produto.
+  - **Editar**: Redireciona para a edição do produto selecionado.
+  - **Excluir**: Remove o produto e suas dependências do sistema.
 
-## Running unit tests
+### Cadastro de Produto
 
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
+Permite a criação ou edição de produtos com os seguintes campos:
+- **Código**: Gerado automaticamente.
+- **Descrição**: Campo obrigatório (alfanumérico, até 60 caracteres).
+- **Custo**: Campo opcional (aceita formato numérico 13,3).
+- **Imagem**: Upload opcional (.png e .jpg).
 
-## Running end-to-end tests
+### Dialog Modal - Alteração/Inclusão de Preço
 
-Run `ng e2e` to execute the end-to-end tests via a platform of your choice. To use this command, you need to first add a package that implements end-to-end testing capabilities.
+- **Loja**: Select obrigatório que lista as lojas cadastradas.
+- **Preço de Venda**: Campo obrigatório (formato numérico 13,3).
 
-## Further help
+**Ações**:
+- **Salvar**: Valida os campos obrigatórios e salva o preço, impedindo duplicidade de preço para a mesma loja.
+- **Fechar**: Fecha o modal sem salvar.
 
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI Overview and Command Reference](https://angular.io/cli) page.
+## Tecnologias Utilizadas
+
+- **Angular** (v18.2.7) com **TypeScript**
+- **Angular Material** e **FontAwesome** para UI/UX
+- **Jest** para testes unitários com cobertura mínima de 80%
+
+## Como Executar o Projeto
+
+1. Instalar as dependências:
+   ```bash
+   npm install
+   ```
+
+2. Iniciar o servidor de desenvolvimento:
+   ```bash
+   npm start
+   ```
+
+A aplicação estará disponível em `http://localhost:4200`.
+
+## Testes
+
+Para rodar os testes unitários:
+
+```bash
+npm test
+```
+
+---
+
+Feito com 💻 por [Allan Gaiteiro](https://github.com/AllanGaiteiro)
+```
+
+### Ponto-chave:
+Este README destaca a lógica principal do projeto (filtros, cadastro e modais) e deixa claro que o foco é no front-end Angular, sem entrar em detalhes do back-end ou do ambiente remoto.
