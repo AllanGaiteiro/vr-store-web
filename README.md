@@ -64,6 +64,10 @@ Permite a criação ou edição de produtos com os seguintes campos:
    npm start
    ```
 
+2. Iniciar o servidor de produção:
+   ```bash
+   npm start:prod
+   ```
 A aplicação estará disponível em `http://localhost:4200`.
 
 ## Testes
@@ -78,6 +82,3 @@ npm test
 
 Feito com 💻 por [Allan Gaiteiro](https://github.com/AllanGaiteiro)
 ```
-
-### Ponto-chave:
-Este README destaca a lógica principal do projeto (filtros, cadastro e modais) e deixa claro que o foco é no front-end Angular, sem entrar em detalhes do back-end ou do ambiente remoto.
