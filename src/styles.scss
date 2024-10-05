@@ -14,5 +14,18 @@ button {
     transition: background-color 0.3s, transform 0.2s;
   }
 
+/* styles.scss */
+.mat-mdc-snack-bar-container {
+  &.success-snackbar {
+    --mdc-snackbar-container-color: #ffffff !important; /* Verde claro */
+    --mdc-snack-bar-button-color: #4caf50 !important; /* Cor do texto do botão */
+    --mdc-snackbar-supporting-text-color: #4caf50 !important; /* Cor do texto de suporte */
+  }
 
-  
+  &.error-snackbar {
+    --mdc-snackbar-container-color: #ffffff !important; /* Verde claro */
+    --mdc-snack-bar-button-color: #f44336 !important; /* Cor do texto do botão */
+    --mdc-snackbar-supporting-text-color: #f44336 !important; /* Cor do texto de suporte */
+  }
+
+}

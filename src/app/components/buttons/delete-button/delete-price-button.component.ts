@@ -9,6 +9,7 @@ import {
 import { PriceService } from '../../../services/price.service';
 import { faTrash } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
+import { ToastService } from '../../../services/toast.service';
 
 @Component({
   selector: 'app-delete-price-button',
@@ -25,14 +26,22 @@ export class DeletePriceButtonComponent {
   @Output() deleted = new EventEmitter<void>();
 
   faTrash = faTrash;
-  constructor(private priceService: PriceService) {}
+  constructor(
+    private priceService: PriceService,
+    private toastService: ToastService
+  ) {}
 
   deletePrice(id: number): void {
     if (confirm('Tem certeza que deseja deletar este produto?')) {
-      this.priceService.deletePrice(id).then(() => {
-        console.log('produto deletado com sucesso');
-        this.deleted.emit();
-      });
+      this.priceService
+        .deletePrice(id)
+        .then(() => {
+          this.toastService.showSuccess('loja deletado com sucesso');
+          this.deleted.emit();
+        })
+        .catch((error) => {
+          this.toastService.showError('Erro ao deletar loja');
+        });
     }
   }
 }

@@ -8,6 +8,7 @@ import {
   FontAwesomeModule,
 } from '@fortawesome/angular-fontawesome';
 import { faSave } from '@fortawesome/free-solid-svg-icons';
+import { ToastService } from '../../../services/toast.service';
 @Component({
   selector: 'app-save-button',
   standalone: true,
@@ -22,7 +23,8 @@ export class SaveButtonComponent {
     private router: Router,
     private productFormService: ProductFormService,
     private productService: ProductService,
-    private library: FaIconLibrary
+    private library: FaIconLibrary,
+    private toastService: ToastService
   ) {
     this.library.addIcons(faSave);
   }
@@ -33,14 +35,20 @@ export class SaveButtonComponent {
     if (!productData?.id) {
       this.productService.createProduct(productData).then((res) => {
         if (res) {
+          this.toastService.showSuccess('Creado com sucesso');
           this.router.navigate(['/produto/cadastro', res.id]);
         }
+        this.toastService.showError('Erro ao tentar criar produto');
       });
     } else {
       this.productService
         .updateProduct(productData.id, productData)
         .then((res) => {
-          console.log('update product');
+          this.toastService.showSuccess('Atualizado com sucesso');
+        })
+        .catch((error) => {
+          this.toastService.showError('Erro ao tentar atualizar');
+          console.error('', error);
         });
     }
   }

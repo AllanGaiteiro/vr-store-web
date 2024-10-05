@@ -9,6 +9,7 @@ import { ProductService } from '../../../services/product.service';
 import { ProductFormService } from '../../../services/product-form.service';
 import { PriceListComponent } from '../../lists/price-list/price-list.component';
 import { ImageUploadComponent } from '../../image-upload/image-upload.component';
+import { ToastService } from '../../../services/toast.service';
 
 @Component({
   selector: 'app-page-product',
@@ -35,7 +36,8 @@ export class PageProductComponent implements OnInit, OnDestroy {
   constructor(
     private activatedRoute: ActivatedRoute,
     private producService: ProductService,
-    private productFormService: ProductFormService
+    private productFormService: ProductFormService,
+    private toastService: ToastService
   ) {}
 
   ngOnInit(): void {
@@ -76,7 +78,15 @@ export class PageProductComponent implements OnInit, OnDestroy {
       this.prodId &&
       this.producService
         .updateProduct(this.prodId, { image: newImageUrl })
-        .then((res) => (this.productImage = newImageUrl))
+        .then((res) => {
+          this.productImage = newImageUrl;
+          this.toastService.showSuccess(
+            'Imagem do produto alterada com sucesso'
+          );
+        })
+        .catch((error) =>
+          this.toastService.showError('Erro ao alterar a Imagem do produto')
+        )
     );
   }
   getImage() {

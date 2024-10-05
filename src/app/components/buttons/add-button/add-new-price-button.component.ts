@@ -7,6 +7,7 @@ import {
   FontAwesomeModule,
 } from '@fortawesome/angular-fontawesome';
 import { faPlus } from '@fortawesome/free-solid-svg-icons';
+import { ToastService } from '../../../services/toast.service';
 
 @Component({
   selector: 'app-add-new-price-button',
@@ -22,7 +23,11 @@ export class AddNewPriceButtonComponent {
   @Input() productId?: number | null = null;
   @Output() priceAdded = new EventEmitter<void>();
 
-  constructor(private dialog: MatDialog, private library: FaIconLibrary) {
+  constructor(
+    private dialog: MatDialog,
+    private library: FaIconLibrary,
+    private toastService: ToastService
+  ) {
     this.library.addIcons(faPlus);
   }
 
@@ -35,7 +40,10 @@ export class AddNewPriceButtonComponent {
 
     dialogRef.afterClosed().subscribe((result) => {
       if (result) {
+        this.toastService.showSuccess('Loja adicionada com sucesso');
         this.priceAdded.emit();
+      } else {
+        this.toastService.showError('Erro ao adicionar uma Loja');
       }
     });
   }
