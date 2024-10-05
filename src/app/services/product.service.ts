@@ -1,4 +1,3 @@
-import { Injectable } from '@angular/core';
 import { firstValueFrom, map, Observable, of, Subject } from 'rxjs';
 import { Product } from '../models/Product';
 import { environment } from '../../environments/environment';
@@ -7,6 +6,7 @@ import { ProductFilter } from '../models/ProductFilter';
 import { PriceService } from './price.service';
 import { FilterPrices } from '../models/FilterPrices';
 import { ParamsService } from './params.service';
+import { Injectable } from '@angular/core';
 
 @Injectable({
   providedIn: 'root',
