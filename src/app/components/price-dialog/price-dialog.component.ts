@@ -61,6 +61,7 @@ export class PriceDialogComponent implements OnInit {
   }
 
   onNoClick(): void {
+    this.priceForm.reset();
     this.dialogRef.close();
   }
 
@@ -70,10 +71,12 @@ export class PriceDialogComponent implements OnInit {
 
       if (this.isEditMode) {
         this.priceService.updatePrice(price).then((res) => {
+          this.priceForm.reset();
           this.dialogRef.close(res);
         });
       } else {
         this.priceService.createPrice(price).then((res) => {
+          this.priceForm.reset();
           this.dialogRef.close(res);
         });
       }
