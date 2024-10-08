@@ -45,8 +45,8 @@ export class ProductFormService {
   updateFormValues(): void {
     if (this.product) {
       this.formGroup.patchValue({
-        id: this.product.id || null,
-        description: this.product.description || null,
+        id: this.product.id ?? null,
+        description: this.product.description ?? null,
         cost: this.product.cost
           ? Number(Number(this.product.cost).toFixed(2))
           : null,
@@ -59,13 +59,9 @@ export class ProductFormService {
     const currentProduct = this.getProduct();
     return (
       //currentProduct.id === values.id &&
-      currentProduct?.description === values?.description &&
-      currentProduct?.cost === values?.cost
+      currentProduct?.description === values.description &&
+      currentProduct?.cost === values.cost
       // && currentProduct?.image === values?.image
     );
-  }
-
-  private isNumber(value: any): value is number {
-    return typeof value === 'number' && !isNaN(value);
   }
 }

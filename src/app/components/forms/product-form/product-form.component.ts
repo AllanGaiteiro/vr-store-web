@@ -23,7 +23,8 @@ export class ProductFormComponent implements OnInit, OnDestroy {
     this.productForm = this.productFormService.getFormGroup();
     this.productSubscription = this.productFormService
       .getFormGroup()
-      .valueChanges.subscribe((res) => this.productFormService.setProduct(res));
+      .valueChanges.subscribe((res) => { this.productFormService.setProduct(res); });
+
   }
 
   ngOnDestroy(): void {

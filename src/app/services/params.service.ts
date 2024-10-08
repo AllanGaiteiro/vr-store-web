@@ -11,11 +11,11 @@ export class ParamsService {
 
   buildProductParams(filters: ProductFilter): HttpParams {
     let params = new HttpParams();
-    if (filters?.id) {
+    if (filters.id) {
       params = params.set('productId', filters.id.toString());
     }
 
-    if (filters?.description) {
+    if (filters.description) {
       params = params.set('description', filters.description.toString());
     }
 
@@ -27,18 +27,18 @@ export class ParamsService {
       }
     }
 
-    if (filters?.page !== undefined && filters?.page !== null) {
+    if (filters.page !== undefined && filters?.page !== null) {
       params = params.set('page', (filters.page + 1).toString());
     }
 
-    if (filters?.limit !== undefined && filters?.limit !== null) {
+    if (filters.limit !== undefined && filters?.limit !== null) {
       params = params.set('limit', filters.limit.toString());
     }
 
-    if (filters?.sortBy) {
+    if (filters.sortBy) {
       params = params.append('sortBy', filters.sortBy);
     }
-    if (filters?.sortOrder) {
+    if (filters.sortOrder) {
       params = params.append('sortOrder', filters.sortOrder);
     }
 
@@ -81,17 +81,17 @@ export class ParamsService {
         }
       }
 
-      if (filters?.page !== undefined) {
+      if (filters.page !== undefined) {
         params = params.set('page', (filters.page + 1).toString());
       }
       if (filters.limit) {
         params = params.set('limit', filters.limit.toString());
       }
 
-      if (filters?.sortBy) {
+      if (filters.sortBy) {
         params = params.append('sortBy', filters.sortBy);
       }
-      if (filters?.sortOrder) {
+      if (filters.sortOrder) {
         params = params.append('sortOrder', filters.sortOrder);
       }
 

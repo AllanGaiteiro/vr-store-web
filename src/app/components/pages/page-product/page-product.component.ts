@@ -44,14 +44,15 @@ export class PageProductComponent implements OnInit, OnDestroy {
     this.routeSubscription = this.activatedRoute.params.subscribe({
       next: (params) => {
         this.runProduct = true;
-        if (params['id'] === null || params['id'] === undefined) {
+        const id = params['id'];
+        if (id === null || id === undefined) {
           this.runProduct = false;
           console.log('Page Product Cadastro');
           this.prodId = null;
           this.productFormService.resetProduct();
         } else {
           console.log('Page Product Edite');
-          this.prodId = Number(params['id']);
+          this.prodId = Number(id);
           if (this.prodId) this.observeProduct(this.prodId);
         }
       },
@@ -68,7 +69,7 @@ export class PageProductComponent implements OnInit, OnDestroy {
     this.producSubscription = this.producService.getProduct(prodId).subscribe({
       next: (res) => {
         this.productFormService.setProduct(res);
-        this.productImage = res?.image || null;
+        this.productImage = res?.image ?? null;
       },
       complete: () => (this.runProduct = false),
     });
@@ -84,12 +85,13 @@ export class PageProductComponent implements OnInit, OnDestroy {
             'Imagem do produto alterada com sucesso'
           );
         })
-        .catch((error) =>
-          this.toastService.showError('Erro ao alterar a Imagem do produto')
-        )
+        .catch((error) => {
+          this.toastService.showError('Erro ao alterar a Imagem do produto');
+          console.error('Erro ao alterar a Imagem do produto', error);
+        })
     );
   }
   getImage() {
-    return this.productImage || this.imgDefault;
+    return this.productImage ?? this.imgDefault;
   }
 }

@@ -39,7 +39,8 @@ export class DeleteProductButtonComponent {
           this.deleted.emit();
           this.router.navigate(['/produto']);
         })
-        .catch((error) => {
+        .catch((error: unknown) => {
+          console.error('Erro ao tentar deletar o produto',error);
           this.toastService.showError('Erro ao tentar deletar o produto');
         });
     }

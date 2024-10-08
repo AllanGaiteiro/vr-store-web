@@ -31,7 +31,7 @@ import { FormGroup } from '@angular/forms';
 export class PriceDialogComponent implements OnInit {
   priceForm!: FormGroup;
   stores?: Store[];
-  isEditMode: boolean = false;
+  isEditMode = false;
 
   constructor(
     private dialogRef: MatDialogRef<PriceDialogComponent>,

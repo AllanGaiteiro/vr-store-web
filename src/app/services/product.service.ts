@@ -45,14 +45,7 @@ export class ProductService {
         limit: number;
       }>(`${this.apiUrl}/products`, params);
     } else {
-      const filterPrice: FilterPrices = {
-        productId: filter?.id,
-        price: filter?.price,
-        cost: filter?.cost,
-        description: filter?.description,
-        costOperator: filter?.costOperator,
-        priceOperator: filter?.priceOperator,
-      };
+      const filterPrice: FilterPrices = { ...filter };
       return this.priceService
         .getPrices(filterPrice, {
           singleItemPerProduct: true,
