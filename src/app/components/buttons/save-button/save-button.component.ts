@@ -46,9 +46,9 @@ export class SaveButtonComponent {
         .then((res) => {
           this.toastService.showSuccess('Atualizado com sucesso');
         })
-        .catch((error) => {
+        .catch((error: unknown) => {
           this.toastService.showError('Erro ao tentar atualizar');
-          console.error('', error);
+          console.error('Erro ao tentar atualizar', error);
         });
     }
   }

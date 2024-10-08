@@ -39,7 +39,8 @@ export class DeletePriceButtonComponent {
           this.toastService.showSuccess('loja deletado com sucesso');
           this.deleted.emit();
         })
-        .catch((error) => {
+        .catch((error: unknown) => {
+          console.error('Erro ao deletar loja',error);
           this.toastService.showError('Erro ao deletar loja');
         });
     }
