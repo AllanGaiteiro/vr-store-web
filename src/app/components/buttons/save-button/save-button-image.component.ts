@@ -1,8 +1,5 @@
 import { CommonModule } from '@angular/common';
 import { Component, Input } from '@angular/core';
-import { ProductService } from '../../../services/product.service';
-import { Router } from '@angular/router';
-import { ProductFormService } from '../../../services/product-form.service';
 import {
   FaIconLibrary,
   FontAwesomeModule,

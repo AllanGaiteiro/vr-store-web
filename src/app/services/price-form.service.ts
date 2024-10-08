@@ -28,16 +28,16 @@ export class PriceFormService {
 
   updateFormValues(price: Partial<Price>): void {
     this.formGroup.patchValue({
-      store: price.store || null,
-      priceValue: price.priceValue || null,
+      store: price.store ?? null,
+      priceValue: price.priceValue ?? null,
     });
   }
 
   formValuesEqual(price: Partial<Price>): boolean {
     const currentPrice = this.formGroup.getRawValue();
     return (
-      currentPrice?.store?.id === price?.store?.id &&
-      currentPrice?.priceValue === price?.priceValue
+      currentPrice?.store?.id === price.store?.id &&
+      currentPrice?.priceValue === price.priceValue
     );
   }
 }
