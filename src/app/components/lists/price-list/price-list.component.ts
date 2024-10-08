@@ -44,8 +44,8 @@ export class PriceListComponent implements OnInit {
   filter?: FilterPrices;
   dataSource: MatTableDataSource<Price>;
   prices?: Price[] = [];
-  sortBy: string = 'store.description';
-  sortOrder: string = 'ASC';
+  sortBy =  'store.description';
+  sortOrder =  'ASC';
   constructor(private priceService: PriceService) {
     this.dataSource = new MatTableDataSource(this.prices);
   }

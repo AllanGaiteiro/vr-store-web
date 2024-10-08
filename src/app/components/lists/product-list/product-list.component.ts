@@ -51,8 +51,8 @@ export class ProductListComponent {
 
   filterFormSubscription?: Subscription;
   productSubscription?: Subscription;
-  sortBy: string = 'product.description';
-  sortOrder: string = 'ASC';
+  sortBy =  'product.description';
+  sortOrder =  'ASC';
 
   constructor(
     private productService: ProductService,
