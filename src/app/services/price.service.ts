@@ -1,11 +1,10 @@
 // price.service.ts
 import { Injectable } from '@angular/core';
-import { HttpClient, HttpParams } from '@angular/common/http';
+import { HttpClient } from '@angular/common/http';
 import { firstValueFrom, Observable } from 'rxjs';
 import { Price } from '../models/Price';
 import { environment } from '../../environments/environment';
 import { FilterPrices } from '../models/FilterPrices';
-import { Product } from '../models/Product';
 import { ParamsService } from './params.service';
 
 @Injectable({
@@ -29,7 +28,7 @@ export class PriceService {
     page: number;
     limit: number;
   }> {
-    let params = this.paramsService.buildPriceParams(filters, option);
+    const params = this.paramsService.buildPriceParams(filters, option);
     return this.http.get<{
       data: Price[];
       length: number;

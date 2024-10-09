@@ -1,7 +1,7 @@
-import { firstValueFrom, map, Observable, of, Subject } from 'rxjs';
+import { firstValueFrom, map, Observable, Subject } from 'rxjs';
 import { Product } from '../models/Product';
 import { environment } from '../../environments/environment';
-import { HttpClient, HttpParams } from '@angular/common/http';
+import { HttpClient } from '@angular/common/http';
 import { ProductFilter } from '../models/ProductFilter';
 import { PriceService } from './price.service';
 import { FilterPrices } from '../models/FilterPrices';

@@ -1,12 +1,11 @@
 import { CommonModule } from '@angular/common';
-import { Component, ViewChild } from '@angular/core';
+import { Component, ViewChild, OnInit, OnDestroy } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import {
   MatPaginatorModule,
   MatPaginator,
   PageEvent,
 } from '@angular/material/paginator';
-import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { MatTableDataSource, MatTableModule } from '@angular/material/table';
 import { Subscription } from 'rxjs';
 import { Product } from '../../../models/Product';
@@ -38,7 +37,7 @@ import { MatSortModule } from '@angular/material/sort';
   templateUrl: './product-list.component.html',
   styleUrl: './product-list.component.scss',
 })
-export class ProductListComponent {
+export class ProductListComponent implements OnInit, OnDestroy {
   @ViewChild(MatPaginator) paginator!: MatPaginator;
   products: Product[] = [];
   isLoading = false;

@@ -1,10 +1,10 @@
-import { Component, Input, OnInit, ViewChild } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { Price } from '../../../models/Price';
 import { PriceService } from '../../../services/price.service';
 import { CommonModule } from '@angular/common';
 import { HttpClientModule } from '@angular/common/http';
 import { MatTableDataSource, MatTableModule } from '@angular/material/table';
-import { MatSort, MatSortModule } from '@angular/material/sort';
+import {  MatSortModule } from '@angular/material/sort';
 import { AddNewPriceButtonComponent } from '../../buttons/add-button/add-new-price-button.component';
 import { EditPriceButtonComponent } from '../../buttons/edit-button/edit-price-button.component';
 import { DeletePriceButtonComponent } from '../../buttons/delete-button/delete-price-button.component';
@@ -12,7 +12,7 @@ import { SpinnerComponent } from '../../spinner/spinner.component';
 import { NotFoundComponent } from '../../not-found/not-found.component';
 import { ErrorListComponent } from '../../error-list/error-list.component';
 import { FilterPrices } from '../../../models/FilterPrices';
-import { MatPaginatorModule, PageEvent } from '@angular/material/paginator';
+import { MatPaginatorModule } from '@angular/material/paginator';
 
 @Component({
   selector: 'app-price-list',
@@ -81,7 +81,7 @@ export class PriceListComponent implements OnInit {
     this.loadPrices();
   }
 
-  onPageChange(event: PageEvent): void {
+  onPageChange(): void {
     this.loadPrices();
   }
 

@@ -1,7 +1,6 @@
 import { CommonModule } from '@angular/common';
 import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
-import { Router } from '@angular/router';
 import { PriceDialogComponent } from '../../price-dialog/price-dialog.component';
 import { Price } from '../../../models/Price';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';

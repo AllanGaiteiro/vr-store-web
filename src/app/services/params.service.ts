@@ -7,7 +7,6 @@ import { ProductFilter } from '../models/ProductFilter';
   providedIn: 'root',
 })
 export class ParamsService {
-  constructor() {}
 
   buildProductParams(filters: ProductFilter): HttpParams {
     let params = new HttpParams();
