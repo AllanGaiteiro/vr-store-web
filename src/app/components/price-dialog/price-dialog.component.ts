@@ -39,7 +39,7 @@ export class PriceDialogComponent implements OnInit {
     private priceService: PriceService,
     private storeService: StoreService,
     private priceFormService: PriceFormService,
-    @Inject(MAT_DIALOG_DATA) public data: Price | null
+    @Inject(MAT_DIALOG_DATA) public data: Price | null,
   ) {
     this.priceForm = this.priceFormService.getFormGroup();
   }
@@ -47,7 +47,7 @@ export class PriceDialogComponent implements OnInit {
   ngOnInit(): void {
     this.storeService.getStores().subscribe((res) => {
       this.stores = res.sort((a, b) =>
-        a.description > b.description ? 1 : -1
+        a.description > b.description ? 1 : -1,
       );
     });
 
@@ -86,7 +86,7 @@ export class PriceDialogComponent implements OnInit {
       }
     } else {
       this.toastService.show(
-        'Um ou mais campos obrigatórios não foram preenchidos corretamente.'
+        'Um ou mais campos obrigatórios não foram preenchidos corretamente.',
       );
     }
   }

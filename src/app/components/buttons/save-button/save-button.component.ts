@@ -24,7 +24,7 @@ export class SaveButtonComponent {
     private productFormService: ProductFormService,
     private productService: ProductService,
     private library: FaIconLibrary,
-    private toastService: ToastService
+    private toastService: ToastService,
   ) {
     this.library.addIcons(faSave);
   }
@@ -46,13 +46,11 @@ export class SaveButtonComponent {
       }
     } else {
       try {
-        await this.productService
-        .updateProduct(productData.id, productData);
+        await this.productService.updateProduct(productData.id, productData);
         this.toastService.showSuccess('Atualizado com sucesso');
-
       } catch (error) {
         this.toastService.showError('Erro ao tentar atualizar');
-        console.error('Erro ao tentar atualizar', error); 
+        console.error('Erro ao tentar atualizar', error);
       }
     }
   }

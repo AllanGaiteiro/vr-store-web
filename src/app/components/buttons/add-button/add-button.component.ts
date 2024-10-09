@@ -18,7 +18,10 @@ import { faPlus } from '@fortawesome/free-solid-svg-icons';
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class AddButtonComponent {
-  constructor(private router: Router, private library: FaIconLibrary) {
+  constructor(
+    private router: Router,
+    private library: FaIconLibrary,
+  ) {
     this.library.addIcons(faPlus);
   }
 

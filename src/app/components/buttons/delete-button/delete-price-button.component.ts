@@ -28,7 +28,7 @@ export class DeletePriceButtonComponent {
   faTrash = faTrash;
   constructor(
     private priceService: PriceService,
-    private toastService: ToastService
+    private toastService: ToastService,
   ) {}
 
   async deletePrice(id: number): Promise<void> {

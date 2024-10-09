@@ -13,7 +13,10 @@ import { ParamsService } from './params.service';
 export class PriceService {
   private apiUrl = environment.apiUrl;
 
-  constructor(private http: HttpClient, private paramsService: ParamsService) {}
+  constructor(
+    private http: HttpClient,
+    private paramsService: ParamsService,
+  ) {}
 
   getPrices(
     filters: FilterPrices,
@@ -21,7 +24,7 @@ export class PriceService {
       singleItemPerProduct: boolean;
     } = {
       singleItemPerProduct: false,
-    }
+    },
   ): Observable<{
     data: Price[];
     length: number;
@@ -42,17 +45,17 @@ export class PriceService {
       this.http.post<Price>(`${this.apiUrl}/prices`, {
         ...newPrice,
         storeId: newPrice.store.id,
-      })
+      }),
     );
   }
   updatePrice(newPrice: Price): Promise<Price> {
     return firstValueFrom(
-      this.http.patch<Price>(`${this.apiUrl}/prices/${newPrice.id}`, newPrice)
+      this.http.patch<Price>(`${this.apiUrl}/prices/${newPrice.id}`, newPrice),
     );
   }
   deletePrice(priceId: number): Promise<Price> {
     return firstValueFrom(
-      this.http.delete<Price>(`${this.apiUrl}/prices/${priceId}`)
+      this.http.delete<Price>(`${this.apiUrl}/prices/${priceId}`),
     );
   }
 }

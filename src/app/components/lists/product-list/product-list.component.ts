@@ -55,7 +55,7 @@ export class ProductListComponent implements OnInit, OnDestroy {
 
   constructor(
     private productService: ProductService,
-    private productFilterService: ProductFilterService
+    private productFilterService: ProductFilterService,
   ) {
     this.dataSource = new MatTableDataSource(this.products);
 

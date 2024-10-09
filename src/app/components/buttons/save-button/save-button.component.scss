@@ -9,13 +9,13 @@ button.save-button {
 }
 
 button.save-button:hover {
-  background-color: $primaria-hover; 
+  background-color: $primaria-hover;
 }
 
 button.save-button:disabled {
   background-color: #cccccc;
   border-color: #999999;
-  color: #666666; 
-  cursor: not-allowed; 
-  transform: none; 
+  color: #666666;
+  cursor: not-allowed;
+  transform: none;
 }

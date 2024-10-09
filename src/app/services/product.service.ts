@@ -23,7 +23,7 @@ export class ProductService {
   constructor(
     private http: HttpClient,
     private priceService: PriceService,
-    private paramsService: ParamsService
+    private paramsService: ParamsService,
   ) {}
 
   getProducts(filter?: ProductFilter): Observable<{
@@ -54,7 +54,7 @@ export class ProductService {
           map((res) => ({
             ...res,
             data: res.data.map((d) => d.product),
-          }))
+          })),
         );
     }
   }
@@ -65,25 +65,25 @@ export class ProductService {
 
   async createProduct(newProduct: Product): Promise<Product> {
     return firstValueFrom(
-      this.http.post<Product>(`${this.apiUrl}/products`, newProduct)
+      this.http.post<Product>(`${this.apiUrl}/products`, newProduct),
     );
   }
 
   async updateProduct(
     prodId: number,
-    updateProduct: Partial<Product>
+    updateProduct: Partial<Product>,
   ): Promise<Product> {
     return firstValueFrom(
       this.http.patch<Product>(
         `${this.apiUrl}/products/${prodId}`,
-        updateProduct
-      )
+        updateProduct,
+      ),
     );
   }
 
   deleteProduct(productId: number): Promise<void> {
     return firstValueFrom(
-      this.http.delete<void>(`${this.apiUrl}/products/${productId}`)
+      this.http.delete<void>(`${this.apiUrl}/products/${productId}`),
     );
   }
 

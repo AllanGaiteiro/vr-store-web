@@ -1,16 +1,16 @@
 @import 'variables';
 
-form{
+form {
   display: flex;
 }
 
 .form-group {
   display: flex;
-  flex-direction: column; 
+  flex-direction: column;
 }
 
 .form-group label {
-  margin-bottom: 5px; 
+  margin-bottom: 5px;
   font-size: 12px;
   color: #333;
 }

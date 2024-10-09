@@ -1,1 +1,1 @@
-export type SortProperty = 'store' | 'priceValue'; 
+export type SortProperty = 'store' | 'priceValue';

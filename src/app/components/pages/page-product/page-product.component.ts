@@ -37,7 +37,7 @@ export class PageProductComponent implements OnInit, OnDestroy {
     private activatedRoute: ActivatedRoute,
     private producService: ProductService,
     private productFormService: ProductFormService,
-    private toastService: ToastService
+    private toastService: ToastService,
   ) {}
 
   ngOnInit(): void {

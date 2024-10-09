@@ -26,7 +26,7 @@ export class AddNewPriceButtonComponent {
   constructor(
     private dialog: MatDialog,
     private library: FaIconLibrary,
-    private toastService: ToastService
+    private toastService: ToastService,
   ) {
     this.library.addIcons(faPlus);
   }

@@ -7,7 +7,6 @@ import { ProductFilter } from '../models/ProductFilter';
   providedIn: 'root',
 })
 export class ParamsService {
-
   buildProductParams(filters: ProductFilter): HttpParams {
     let params = new HttpParams();
     if (filters.id) {
@@ -48,7 +47,7 @@ export class ParamsService {
     filters: FilterPrices,
     option: {
       singleItemPerProduct: boolean;
-    }
+    },
   ) {
     let params = new HttpParams();
 
@@ -97,7 +96,7 @@ export class ParamsService {
       if (option.singleItemPerProduct) {
         params = params.set(
           'singleItemPerProduct',
-          option.singleItemPerProduct.toString()
+          option.singleItemPerProduct.toString(),
         );
       }
     }

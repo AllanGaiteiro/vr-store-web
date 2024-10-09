@@ -23,7 +23,10 @@ export class EditPriceButtonComponent {
   @Input() price?: Price;
   @Output() priceEdited = new EventEmitter<void>();
   faEdit = faEdit;
-  constructor(private dialog: MatDialog, private toastService: ToastService) {}
+  constructor(
+    private dialog: MatDialog,
+    private toastService: ToastService,
+  ) {}
 
   openPriceDialog() {
     const dialogRef = this.dialog.open(PriceDialogComponent, {

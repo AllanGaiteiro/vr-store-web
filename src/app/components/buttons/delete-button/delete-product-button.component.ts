@@ -27,7 +27,7 @@ export class DeleteProductButtonComponent {
   constructor(
     private productService: ProductService,
     private router: Router,
-    private toastService: ToastService
+    private toastService: ToastService,
   ) {}
 
   async deleteProduct(productId: number): Promise<void> {

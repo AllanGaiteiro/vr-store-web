@@ -18,7 +18,10 @@ import { faArrowLeft } from '@fortawesome/free-solid-svg-icons';
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class BackButtonComponent {
-  constructor(private router: Router, private library: FaIconLibrary) {
+  constructor(
+    private router: Router,
+    private library: FaIconLibrary,
+  ) {
     this.library.addIcons(faArrowLeft);
   }
   onBack(): void {
