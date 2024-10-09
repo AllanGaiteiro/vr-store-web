@@ -1,3 +1,5 @@
+@import 'variables';
+
 .spinner-container {
   display: flex;
   justify-content: center;
@@ -6,5 +8,5 @@
 }
 
 .mat-mdc-progress-spinner {
-  --mdc-circular-progress-active-indicator-color: #fe9e23;
+  --mdc-circular-progress-active-indicator-color: $primaria;
 }

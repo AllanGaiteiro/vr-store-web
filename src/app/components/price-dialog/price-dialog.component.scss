@@ -1,3 +1,5 @@
+@import 'variables';
+
 .dialog-header {
   display: flex;
   justify-content: space-between;
@@ -37,26 +39,26 @@
 }
 
 .save-button {
-  background-color: #fe9e23;
+  background-color: $primaria;
   margin: 0px;
-  border: 1px solid #fe9e23;
-  color: white;
+  border: 1px solid $primaria;
+  color: $secundaria;
   &:hover {
-    background-color: #fd8c00;
+    background-color: $primaria-hover;
   }
   &:disabled {
-    background-color: white;
-    color: #fd8c00;
+    background-color: $secundaria;
+    color: $primaria-hover;
   }
 }
 
 .close-button {
-  background-color: white;
+  background-color: $secundaria;
   margin: 0px;
   border: 1px solid #e64a19;
   color: #e64a19;
   &:hover {
     background-color: #e64a19;
-    color: white;
+    color: $secundaria;
   }
 }

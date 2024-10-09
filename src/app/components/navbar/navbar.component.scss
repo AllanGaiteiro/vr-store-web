@@ -1,3 +1,5 @@
+@import 'variables';
+
 .nav-container {
   display: flex;
   position: relative; /* Para usar position absolute no h2 */
@@ -7,7 +9,7 @@
   position: absolute; /* Remove o h2 do fluxo normal */
   left: 50%; /* Move o h2 para o centro */
   transform: translateX(-50%); /* Ajusta a posição para centralizá-lo */
-  color: #fe9e23; 
+  color: $primaria; 
   font-size: 1.8em;
   font-weight: bold;
   letter-spacing: 1px;
