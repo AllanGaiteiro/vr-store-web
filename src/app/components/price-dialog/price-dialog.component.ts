@@ -65,20 +65,24 @@ export class PriceDialogComponent implements OnInit {
     this.dialogRef.close();
   }
 
-  save(): void {
+  async save(): Promise<void> {
     if (this.priceForm.valid) {
       const price = { ...this.data, ...this.priceForm.value };
 
-      if (this.isEditMode) {
-        this.priceService.updatePrice(price).then((res) => {
-          this.priceForm.reset();
-          this.dialogRef.close(res);
-        });
-      } else {
-        this.priceService.createPrice(price).then((res) => {
-          this.priceForm.reset();
-          this.dialogRef.close(res);
-        });
+      try {
+        const response = this.isEditMode
+          ? await this.priceService.updatePrice(price)
+          : await this.priceService.createPrice(price);
+
+        this.priceForm.reset();
+        this.dialogRef.close(response);
+      } catch (error) {
+        const textError = `Erro ao ${
+          this.isEditMode ? 'Editar' : 'Adicionar'
+        } uma loja ao produto`;
+
+        console.error(textError, error);
+        this.toastService.showError(textError);
       }
     } else {
       this.toastService.show(

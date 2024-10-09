@@ -31,18 +31,16 @@ export class DeletePriceButtonComponent {
     private toastService: ToastService
   ) {}
 
-  deletePrice(id: number): void {
+  async deletePrice(id: number): Promise<void> {
     if (confirm('Tem certeza que deseja deletar este produto?')) {
-      this.priceService
-        .deletePrice(id)
-        .then(() => {
-          this.toastService.showSuccess('loja deletado com sucesso');
-          this.deleted.emit();
-        })
-        .catch((error: unknown) => {
-          console.error('Erro ao deletar loja',error);
-          this.toastService.showError('Erro ao deletar loja');
-        });
+      try {
+        await this.priceService.deletePrice(id);
+        this.toastService.showSuccess('loja deletado com sucesso');
+        this.deleted.emit();
+      } catch (error) {
+        console.error('Erro ao deletar loja', error);
+        this.toastService.showError('Erro ao deletar loja');
+      }
     }
   }
 }

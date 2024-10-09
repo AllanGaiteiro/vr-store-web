@@ -74,22 +74,26 @@ export class PageProductComponent implements OnInit, OnDestroy {
       complete: () => (this.runProduct = false),
     });
   }
-  onImageUrlChange(newImageUrl: string) {
-    return (
-      this.prodId &&
-      this.producService
-        .updateProduct(this.prodId, { image: newImageUrl })
-        .then((res) => {
+  async onImageUrlChange(newImageUrl: string): Promise<void> {
+    try {
+      if (this.prodId) {
+        await this.producService.updateProduct(this.prodId, {
+          image: newImageUrl,
+        });
+        this.productImage = newImageUrl;
+        this.toastService.showSuccess('Imagem do produto alterada com sucesso');
+      } else {
+        const product = this.productFormService.getProduct();
+        if (product) {
+          product.image = newImageUrl;
           this.productImage = newImageUrl;
-          this.toastService.showSuccess(
-            'Imagem do produto alterada com sucesso'
-          );
-        })
-        .catch((error) => {
-          this.toastService.showError('Erro ao alterar a Imagem do produto');
-          console.error('Erro ao alterar a Imagem do produto', error);
-        })
-    );
+          this.productFormService.setProduct(product);
+        }
+      }
+    } catch (error) {
+      this.toastService.showError('Erro ao alterar a Imagem do produto');
+      console.error('Erro ao alterar a Imagem do produto', error);
+    }
   }
   getImage() {
     return this.productImage ?? this.imgDefault;

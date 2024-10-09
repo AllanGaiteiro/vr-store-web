@@ -29,27 +29,31 @@ export class SaveButtonComponent {
     this.library.addIcons(faSave);
   }
 
-  saveProduct(): void {
+  async saveProduct() {
     const productData = this.productFormService.getProduct();
     if (!productData) return;
     if (!productData?.id) {
-      this.productService.createProduct(productData).then((res) => {
-        if (res) {
-          this.toastService.showSuccess('Creado com sucesso');
-          this.router.navigate(['/produto/cadastro', res.id]);
+      try {
+        const res = await this.productService.createProduct(productData);
+        if (!res) {
+          throw new Error('Response return  null/undefined');
         }
+        this.toastService.showSuccess('Creado com sucesso');
+        this.router.navigate(['/produto/cadastro', res.id]);
+      } catch (error) {
         this.toastService.showError('Erro ao tentar criar produto');
-      });
+        console.error('Erro ao tentar criar produto', error);
+      }
     } else {
-      this.productService
-        .updateProduct(productData.id, productData)
-        .then((res) => {
-          this.toastService.showSuccess('Atualizado com sucesso');
-        })
-        .catch((error: unknown) => {
-          this.toastService.showError('Erro ao tentar atualizar');
-          console.error('Erro ao tentar atualizar', error);
-        });
+      try {
+        await this.productService
+        .updateProduct(productData.id, productData);
+        this.toastService.showSuccess('Atualizado com sucesso');
+
+      } catch (error) {
+        this.toastService.showError('Erro ao tentar atualizar');
+        console.error('Erro ao tentar atualizar', error); 
+      }
     }
   }
 }
