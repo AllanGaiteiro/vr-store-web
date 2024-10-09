@@ -1,6 +1,5 @@
-import { Product } from "./Product";
+import { Product } from './Product';
 import { Store } from './Store';
-
 
 export interface Price {
   id: number;

@@ -1,7 +1,6 @@
 import { CommonModule } from '@angular/common';
 import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
-import { Router } from '@angular/router';
 import { PriceDialogComponent } from '../../price-dialog/price-dialog.component';
 import { Price } from '../../../models/Price';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
@@ -24,7 +23,10 @@ export class EditPriceButtonComponent {
   @Input() price?: Price;
   @Output() priceEdited = new EventEmitter<void>();
   faEdit = faEdit;
-  constructor(private dialog: MatDialog, private toastService: ToastService) {}
+  constructor(
+    private dialog: MatDialog,
+    private toastService: ToastService,
+  ) {}
 
   openPriceDialog() {
     const dialogRef = this.dialog.open(PriceDialogComponent, {

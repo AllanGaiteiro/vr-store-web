@@ -10,7 +10,7 @@ import { ReactiveFormsModule } from '@angular/forms';
   standalone: true,
   imports: [
     CommonModule,
-    ReactiveFormsModule,     
+    ReactiveFormsModule,
     NavbarComponent,
     ProductFilterComponent,
     ProductListComponent,

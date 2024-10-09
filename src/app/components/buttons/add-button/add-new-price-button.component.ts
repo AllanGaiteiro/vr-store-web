@@ -1,5 +1,5 @@
 import { CommonModule } from '@angular/common';
-import { Component, EventEmitter, Input, input, Output } from '@angular/core';
+import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { MatDialog, MatDialogModule } from '@angular/material/dialog';
 import { PriceDialogComponent } from '../../price-dialog/price-dialog.component';
 import {
@@ -26,7 +26,7 @@ export class AddNewPriceButtonComponent {
   constructor(
     private dialog: MatDialog,
     private library: FaIconLibrary,
-    private toastService: ToastService
+    private toastService: ToastService,
   ) {
     this.library.addIcons(faPlus);
   }

@@ -27,22 +27,20 @@ export class DeleteProductButtonComponent {
   constructor(
     private productService: ProductService,
     private router: Router,
-    private toastService: ToastService
+    private toastService: ToastService,
   ) {}
 
-  deleteProduct(productId: number): void {
+  async deleteProduct(productId: number): Promise<void> {
     if (confirm('Tem certeza que deseja deletar este produto?')) {
-      this.productService
-        .deleteProduct(productId)
-        .then(() => {
-          this.toastService.showSuccess('produto deletado com sucesso');
-          this.deleted.emit();
-          this.router.navigate(['/produto']);
-        })
-        .catch((error: unknown) => {
-          console.error('Erro ao tentar deletar o produto',error);
-          this.toastService.showError('Erro ao tentar deletar o produto');
-        });
+      try {
+        await this.productService.deleteProduct(productId);
+        this.toastService.showSuccess('produto deletado com sucesso');
+        this.deleted.emit();
+        this.router.navigate(['/produto']);
+      } catch (error) {
+        console.error('Erro ao tentar deletar o produto', error);
+        this.toastService.showError('Erro ao tentar deletar o produto');
+      }
     }
   }
 }

@@ -39,7 +39,7 @@ export class PriceDialogComponent implements OnInit {
     private priceService: PriceService,
     private storeService: StoreService,
     private priceFormService: PriceFormService,
-    @Inject(MAT_DIALOG_DATA) public data: Price | null
+    @Inject(MAT_DIALOG_DATA) public data: Price | null,
   ) {
     this.priceForm = this.priceFormService.getFormGroup();
   }
@@ -47,7 +47,7 @@ export class PriceDialogComponent implements OnInit {
   ngOnInit(): void {
     this.storeService.getStores().subscribe((res) => {
       this.stores = res.sort((a, b) =>
-        a.description > b.description ? 1 : -1
+        a.description > b.description ? 1 : -1,
       );
     });
 
@@ -65,24 +65,28 @@ export class PriceDialogComponent implements OnInit {
     this.dialogRef.close();
   }
 
-  save(): void {
+  async save(): Promise<void> {
     if (this.priceForm.valid) {
       const price = { ...this.data, ...this.priceForm.value };
 
-      if (this.isEditMode) {
-        this.priceService.updatePrice(price).then((res) => {
-          this.priceForm.reset();
-          this.dialogRef.close(res);
-        });
-      } else {
-        this.priceService.createPrice(price).then((res) => {
-          this.priceForm.reset();
-          this.dialogRef.close(res);
-        });
+      try {
+        const response = this.isEditMode
+          ? await this.priceService.updatePrice(price)
+          : await this.priceService.createPrice(price);
+
+        this.priceForm.reset();
+        this.dialogRef.close(response);
+      } catch (error) {
+        const textError = `Erro ao ${
+          this.isEditMode ? 'Editar' : 'Adicionar'
+        } uma loja ao produto`;
+
+        console.error(textError, error);
+        this.toastService.showError(textError);
       }
     } else {
       this.toastService.show(
-        'Um ou mais campos obrigatórios não foram preenchidos corretamente.'
+        'Um ou mais campos obrigatórios não foram preenchidos corretamente.',
       );
     }
   }

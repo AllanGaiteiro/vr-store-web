@@ -1,13 +1,15 @@
+@import 'variables';
+
 button.edit-button {
-  background-color: white;
-  color: #fe9e23;
+  background-color: $secundaria;
+  color: $primaria;
   font-size: 1.5rem;
   margin: 0px 5px;
-  border: 1px solid white;
+  border: 1px solid $secundaria;
 }
 
 button.edit-button:hover {
-  background-color: #fe9e23;
-  color: white;
-  border: 1px solid #fe9e23;
+  background-color: $primaria;
+  color: $secundaria;
+  border: 1px solid $primaria;
 }

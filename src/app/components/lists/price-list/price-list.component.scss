@@ -1,3 +1,5 @@
+@import 'variables';
+
 .price-list-container {
   display: flex;
   justify-content: start;
@@ -18,7 +20,7 @@ td {
 }
 
 th {
-  color: #fe9e23;
+  color: $primaria;
   font-weight: bold;
   cursor: pointer;
 }

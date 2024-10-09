@@ -1,4 +1,4 @@
-import { Filter } from "./Filter";
+import { Filter } from './Filter';
 
 export interface FilterPrices extends Filter {
   productId?: number;

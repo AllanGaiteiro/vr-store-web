@@ -1,7 +1,7 @@
-import { firstValueFrom, map, Observable, of, Subject } from 'rxjs';
+import { firstValueFrom, map, Observable, Subject } from 'rxjs';
 import { Product } from '../models/Product';
 import { environment } from '../../environments/environment';
-import { HttpClient, HttpParams } from '@angular/common/http';
+import { HttpClient } from '@angular/common/http';
 import { ProductFilter } from '../models/ProductFilter';
 import { PriceService } from './price.service';
 import { FilterPrices } from '../models/FilterPrices';
@@ -23,7 +23,7 @@ export class ProductService {
   constructor(
     private http: HttpClient,
     private priceService: PriceService,
-    private paramsService: ParamsService
+    private paramsService: ParamsService,
   ) {}
 
   getProducts(filter?: ProductFilter): Observable<{
@@ -54,7 +54,7 @@ export class ProductService {
           map((res) => ({
             ...res,
             data: res.data.map((d) => d.product),
-          }))
+          })),
         );
     }
   }
@@ -65,25 +65,25 @@ export class ProductService {
 
   async createProduct(newProduct: Product): Promise<Product> {
     return firstValueFrom(
-      this.http.post<Product>(`${this.apiUrl}/products`, newProduct)
+      this.http.post<Product>(`${this.apiUrl}/products`, newProduct),
     );
   }
 
   async updateProduct(
     prodId: number,
-    updateProduct: Partial<Product>
+    updateProduct: Partial<Product>,
   ): Promise<Product> {
     return firstValueFrom(
       this.http.patch<Product>(
         `${this.apiUrl}/products/${prodId}`,
-        updateProduct
-      )
+        updateProduct,
+      ),
     );
   }
 
   deleteProduct(productId: number): Promise<void> {
     return firstValueFrom(
-      this.http.delete<void>(`${this.apiUrl}/products/${productId}`)
+      this.http.delete<void>(`${this.apiUrl}/products/${productId}`),
     );
   }
 

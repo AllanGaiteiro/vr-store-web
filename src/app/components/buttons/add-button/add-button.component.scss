@@ -1,11 +1,12 @@
+@import 'variables';
 button.add-button {
-  background-color: #fe9e23;
+  background-color: $primaria;
   margin: 0px 5px;
   font-size: 1.5rem;
-  border: 1px solid #fe9e23;
-  color: white;
+  border: 1px solid $primaria;
+  color: $secundaria;
 }
 
 button.add-button:hover {
-  background-color: #fd8c00;
+  background-color: $primaria-hover;
 }

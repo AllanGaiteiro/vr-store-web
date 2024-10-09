@@ -1,3 +1,5 @@
+@import 'variables';
+
 .product-list-container {
   max-width: 1200px;
   margin: 0 auto;
@@ -15,11 +17,11 @@
 }
 
 th {
-  color: #fe9e23;
+  color: $primaria;
   font-weight: bold;
   text-align: left;
   font-size: 16px;
-  border-bottom: 2px solid white;
+  border-bottom: 2px solid $secundaria;
 }
 
 .product-table .mat-column-actions {

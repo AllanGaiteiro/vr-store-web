@@ -1,19 +1,21 @@
+@import 'variables';
+
 button.save-button {
-  background-color: #fe9e23;
+  background-color: $primaria;
   margin: 0px 5px;
-  border: 1px solid #fe9e23;
+  border: 1px solid $primaria;
   font-size: 1.5rem;
-  color: white;
+  color: $secundaria;
 }
 
 button.save-button:hover {
-  background-color: #fd8c00; 
+  background-color: $primaria-hover;
 }
 
 button.save-button:disabled {
   background-color: #cccccc;
   border-color: #999999;
-  color: #666666; 
-  cursor: not-allowed; 
-  transform: none; 
+  color: #666666;
+  cursor: not-allowed;
+  transform: none;
 }

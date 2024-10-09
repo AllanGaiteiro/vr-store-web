@@ -1,13 +1,15 @@
-  button.delete-button {
-    background-color: white;    
-    color: #ff5722;
-    font-size: 1.5rem;
-    margin: 0px 5px;
-    border: 1px solid white;
-  }
-  
-  button.delete-button:hover {
-    background-color: #e64a19;
-    color: white;
-    border: 1px solid #e64a19;
-    }
+@import 'variables';
+
+button.delete-button {
+  background-color: $secundaria;
+  color: #ff5722;
+  font-size: 1.5rem;
+  margin: 0px 5px;
+  border: 1px solid $secundaria;
+}
+
+button.delete-button:hover {
+  background-color: #e64a19;
+  color: $secundaria;
+  border: 1px solid #e64a19;
+}

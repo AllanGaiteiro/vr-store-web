@@ -1,11 +1,6 @@
 <div class="product-list-container">
   <div *ngIf="!isLoading && dataSource && dataSource.data.length">
-    <table
-      mat-table
-      [dataSource]="dataSource"
-      matSort
-      class="product-table"
-    >
+    <table mat-table [dataSource]="dataSource" matSort class="product-table">
       <!-- Código -->
       <ng-container matColumnDef="id">
         <th
@@ -34,7 +29,14 @@
 
       <!-- Preço de Venda -->
       <ng-container matColumnDef="price">
-        <th mat-header-cell *matHeaderCellDef mat-sort-header (click)="changeSort('product.cost')">Custo (R$)</th>
+        <th
+          mat-header-cell
+          *matHeaderCellDef
+          mat-sort-header
+          (click)="changeSort('product.cost')"
+        >
+          Custo (R$)
+        </th>
         <td mat-cell *matCellDef="let product">
           {{ product.cost | currency }}
         </td>
