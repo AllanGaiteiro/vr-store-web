@@ -2,6 +2,7 @@
 
 ![GitHub repo size](https://img.shields.io/github/repo-size/AllanGaiteiro/project-reply-playstation-store-web-angular?style=for-the-badge)
 ![GitHub language count](https://img.shields.io/github/languages/count/AllanGaiteiro/project-reply-playstation-store-web-angular?style=for-the-badge)
+[![Codacy Badge](https://api.codacy.com/project/badge/Grade/d46c2a0943e549f3a39f5be01a573a6e)](https://app.codacy.com/gh/AllanGaiteiro/vr-store-web?utm_source=github.com&utm_medium=referral&utm_content=AllanGaiteiro/vr-store-web&utm_campaign=Badge_Grade)
 [![Link do Swagger](https://img.shields.io/badge/-Swagger-49BE?style=for-the-badge)](https://vr-store-app-f49680f6875e.herokuapp.com/api-docs)
 [![Link para a Página Inicial](https://img.shields.io/badge/Página%20Inicial-ffffff?style=for-the-badge&color=1e3c66)](https://vr-store-app.web.app/) 
 
